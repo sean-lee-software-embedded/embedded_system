@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC, Embedded System &amp; AI Tutorial｜給具Embedded System經驗的面試者</title>
+<style>
+:root{--navy:#073556;--green:#79bd28;--ink:#203b50;--muted:#627787;--line:#dce5eb;--bg:#f3f6f8;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif}a{color:#126b9d;text-underline-offset:4px}button,select{font:inherit}button{cursor:pointer}header{background:var(--navy);color:#fff;padding:52px max(6vw,24px) 46px;border-top:7px solid var(--green)}.eyebrow{font-size:12px;letter-spacing:2px;color:#b9dd95;font-weight:700}h1{font-size:clamp(32px,4vw,52px);line-height:1.25;margin:12px 0}header p{max-width:780px;color:#d2e2ed;margin-bottom:20px}.tags{display:flex;gap:10px;flex-wrap:wrap}.tags span{border:1px solid #567286;border-radius:20px;font-size:13px;padding:3px 12px}.layout{max-width:1380px;margin:32px auto;display:grid;grid-template-columns:230px minmax(0,1fr);gap:30px;padding:0 24px}aside{position:sticky;top:20px;align-self:start;padding:18px 0;max-height:calc(100vh - 40px);overflow-y:auto}aside strong{display:block;color:var(--navy);padding:0 14px 12px}nav a{display:block;color:var(--muted);padding:8px 14px;text-decoration:none;border-left:3px solid transparent;font-size:14px}nav a:hover{border-color:var(--green);background:#e9f0e6;color:var(--navy)}.offline{font-size:12px;color:var(--muted);padding:20px 14px}section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px;margin-bottom:24px;box-shadow:0 5px 18px #07355604}.kicker{font-size:12px;color:#5d8c24;font-weight:800;letter-spacing:1.5px}h2{color:var(--navy);font-size:25px;line-height:1.4;margin:4px 0 18px}h3{font-size:18px;color:var(--navy);margin:26px 0 10px}p{margin:10px 0}.intro{font-size:17px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:#f5f8fa;border-radius:10px;padding:18px}.card b{display:block;color:var(--navy);margin-bottom:6px}.card p{font-size:14px;margin:0}.note{background:#eef6e7;border-left:4px solid var(--green);padding:13px 17px;margin:18px 0;font-size:14px}.caution{background:#fff6e9;border-left-color:#da9c36}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0}th{text-align:left;background:#edf3f6;color:var(--navy);white-space:nowrap}th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}td:first-child{font-weight:600}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em;overflow-wrap:anywhere}p code,td code,li code{background:#edf2f5;border-radius:4px;padding:2px 5px}.codebox{position:relative;margin:14px 0}pre{background:#102b40;color:#e1edf4;padding:22px 82px 22px 20px;border-radius:9px;overflow:auto;line-height:1.7;font-size:14px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.copy{position:absolute;top:10px;right:10px;border:1px solid #597081;color:#d9e8f0;background:#254456;border-radius:5px;padding:3px 9px;font-size:12px}.copy:focus-visible,button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #7abc2e;outline-offset:3px}.steps{padding-left:24px}.steps li{padding:4px 0}.badge{font-size:12px;display:inline-block;border-radius:5px;background:#eaf3e1;color:#426b1b;padding:1px 7px;margin-left:8px}.impact{background:#fff0da;color:#865200}.small{font-size:13px;color:var(--muted)}details{border:1px solid var(--line);padding:14px 18px;border-radius:8px;margin:10px 0}summary{cursor:pointer;font-weight:650;color:var(--navy)}.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0}.btn{background:var(--navy);color:#fff;padding:8px 16px;border:0;border-radius:7px;font-size:14px}.btn.secondary{background:#e9eff3;color:var(--navy)}#progress{font-size:14px;color:var(--muted);margin-right:auto}select{background:#fff;border:1px solid #bfcfd9;border-radius:5px;padding:5px;min-width:95px}footer{text-align:center;padding:6px 24px 32px;font-size:12px;color:var(--muted)}.source li{padding:4px 0}.readout{border-left:3px solid #c7d6df;padding-left:16px;font-size:14px}.checktable td:first-child{white-space:nowrap}.checktable td:nth-child(2){min-width:230px}ul{padding-left:23px}.flow{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin:20px 0}.flow span{flex:1;min-width:130px;border-top:3px solid var(--green);background:#f2f6f8;padding:12px;font-size:14px}.flow small{display:block;color:var(--muted)}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0;margin-top:16px}aside{position:static;padding:0 0 18px;max-height:none;overflow:visible}nav{display:flex;flex-wrap:wrap}nav a{border-left:0;padding:6px 10px}.offline,aside strong{display:none}.grid{grid-template-columns:1fr}.layout{padding:0 14px}section{padding:22px}header{padding:30px 24px}h2{font-size:23px}}
+@media print{body{background:#fff;font-size:11pt}.layout{display:block;margin:0;padding:0}aside,.copy,.toolbar,.offline{display:none}header{background:white;color:var(--navy);padding:20px 0;border-top:4px solid var(--green)}header p,.eyebrow{color:var(--ink)}.tags{display:none}h1{font-size:28pt}section{border:0;border-radius:0;padding:16px 0;box-shadow:none;margin-bottom:10px}h2,h3{break-after:avoid}pre{background:#edf3f6;color:#102b40;padding:12px;break-inside:avoid}details{break-inside:avoid}th,td{padding:8px}a{color:inherit}footer{display:none}}
+.navpart{display:block;padding:14px 14px 5px;font-size:12px;font-weight:800;color:var(--navy)}.partbanner{background:var(--navy);color:white;border-radius:12px;padding:24px 30px;margin-bottom:24px}.partbanner h2{color:white;margin:4px 0 8px;font-size:28px}.partbanner p{margin:0;color:#d6e5ee}.partbanner .kicker{color:#b9dd95}.refline{font-size:12px;color:var(--muted);margin-top:18px}@media print{.partbanner{background:#edf3f6;color:var(--navy);break-before:page}.partbanner h2,.partbanner p,.partbanner .kicker{color:var(--navy)}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">EMBEDDED SYSTEM → BMC · INTERVIEW PREPARATION</div><h1>BMC, Embedded System &amp; AI Tutorial</h1><p>給具Embedded System開發經驗、希望認識BMC的面試者。從熟悉的Linux、Driver、I²C與UART概念出發，依序整理Embedded System開發實務、AI協作與學習方法，再以Redfish與IPMI作為加分內容。</p><div class="tags"><span>中文說明 × 英文專有名詞</span><span>Linux / Bash實作</span><span>不要求BMC／IPMI／Redfish經驗</span></div></header>
+<div class="layout"><aside><strong>學習目錄</strong><nav aria-label="教學目錄"><span class="navpart">第一部分 · Embedded System</span><a href="#em-yocto">1.1 · 什麼是Yocto Build System？</a><a href="#em-metadata">1.2 · 什麼是Recipe、Layer與Image？</a><a href="#em-devtool">1.3 · 什麼是devtool？modify、build與deploy怎麼用？</a><a href="#em-systemd">1.4 · systemd、start／enable與新Daemon快速驗證</a><a href="#em-git">1.5 · Git基本開發流程</a><a href="#em-git-integrate">1.6 · git rebase、git merge與git cherry-pick</a><a href="#em-resources">1.7 · 怎麼看CPU Usage與Memory使用量？</a><a href="#em-services">1.8 · 怎麼檢查Service與Port？</a><a href="#em-gdb">1.9 · 什麼是GDB？基本使用情境</a><a href="#em-dt">1.10 · 什麼是DTS、DTC與DTB？怎麼Debug？</a><a href="#em-cross">1.11 · Toolchain、Cross-compilation與常見問題</a><a href="#em-dbus">1.12 · 什麼是D-Bus？Method／Signal差異與Debug</a><span class="navpart">第二部分 · AI</span><a href="#ai-use">2.1 · 如何使用AI？</a><a href="#ai-efficiency">2.2 · 如何用AI加速工作效率？</a><a href="#ai-learning">2.3 · 如何用AI學習與成長？</a><a href="#ai-prompt">2.4 · 什麼是Prompt Engineering？</a><a href="#ai-context">2.5 · 什麼是Context Engineering？</a><a href="#ai-harness">2.6 · 什麼是Harness Engineering？</a><span class="navpart">第三部分 · Redfish（加分）</span><a href="#rf-what">3.1 · 什麼是Redfish</a><a href="#rf-why">3.2 · 為什麼需要Redfish</a><a href="#rf-compare">3.3 · 與IPMI的優缺點比較</a><a href="#rf-rest">3.4 · 什麼是RESTful</a><a href="#rf-resource">3.5 · 什麼是REST Resource</a><a href="#rf-status">3.6 · HTTP Status Code</a><a href="#rf-idempotency">3.7 · 什麼是Idempotency</a><a href="#rf-schema">3.8 · 什麼是Schema</a><a href="#rf-schema-defines">3.9 · Schema定義哪些內容</a><a href="#rf-validator">3.10 · Service Validator</a><span class="navpart">第四部分 · IPMI（加分）</span><a href="#basics">4.1 · 從Embedded到BMC</a><a href="#connect">4.2 · 建立連線</a><a href="#monitor">4.3 · Monitoring</a><a href="#control">4.4 · Power Control與SOL</a><a href="#stability">4.5 · Reset與Firmware Update</a><a href="#troubleshoot">4.6 · Debug思路與自我整理</a><span class="navpart">延伸閱讀</span><a href="#sources">參考資料</a></nav><div class="offline">單一HTML檔，可離線閱讀。<br>本頁僅提供教學，不會連線到BMC或執行指令。</div></aside>
+<main>
+<div class="partbanner"><div class="kicker">PART 1</div><h2>第一部分：Embedded System</h2><p>從Build、部署與版本控制，到Process、Kernel及IPC除錯。</p></div><div class="note"><b>範例約定：</b>Build Host是開發電腦；Target是Embedded裝置。exampled、PID、Hostname與路徑皆為範例，需依專案替換。所有指令是教學內容，本頁不會執行或連線；工具與選項依Image配置及版本而異。</div><section id="em-yocto"><div class="kicker">1.1 / EMBEDDED SYSTEM</div><h2>什麼是Yocto Build System？</h2><p class="intro">Yocto Project提供建立客製化Embedded Linux系統的工具、Metadata與開發方法。一般所說的「Yocto Build」，通常指透過BitBake與OpenEmbedded Metadata，建置Toolchain、套件、Kernel及Image的流程。</p><p>它不是一份固定內容的Linux發行版，也不只是一個Compiler。你用Metadata描述要取得哪些Source、套用哪些Patch、如何Configure／Compile／Install，以及最終Image包含哪些套件。</p><div class="tablewrap"><table><thead><tr><th>組成</th><th>用途</th></tr></thead><tbody><tr><td>BitBake</td><td>解析Metadata、處理Task Dependency與執行Build Tasks。</td></tr><tr><td>OpenEmbedded-Core</td><td>提供共用Recipes、Classes與核心Metadata。</td></tr><tr><td>Poky</td><td>Yocto Project的Reference Distribution／整合範例。</td></tr><tr><td>Machine／Distro設定</td><td>選擇目標硬體與發行版政策。</td></tr><tr><td>sstate／Downloads</td><td>重用可用的Task輸出與Source下載，減少重複工作。</td></tr></tbody></table></div><div class="note">理解依賴順序即可先入門：取得Source、套Patch、Configure、Compile、Install到暫存目錄、產生Package，再組成Root Filesystem與Image。實際Task由Recipe與繼承的Class決定。</div><div class="codebox"><pre><code># 在已初始化的專案Build環境執行；名稱皆為範例
+bitbake exampled
+bitbake core-image-minimal
+bitbake-layers show-layers
+bitbake-layers show-recipes exampled</code></pre><button class="copy" type="button">複製</button></div><p class="small">請先使用專案規定的Environment Setup與MACHINE設定。OpenBMC等專案可能有自己的Setup Script與Image名稱；不必另建一套Poky來修改既有專案。</p><p class="refline">參考：<a href="https://docs.yoctoproject.org/5.1/overview-manual/concepts.html">Yocto Project Concepts</a></p></section><section id="em-metadata"><div class="kicker">1.2 / EMBEDDED SYSTEM</div><h2>什麼是Recipe、Layer與Image？</h2><div class="tablewrap"><table><thead><tr><th>名詞</th><th>定義</th><th>例子</th></tr></thead><tbody><tr><td>Recipe</td><td>通常以.bb描述一個軟體元件如何取得、建置、安裝及產生套件。</td><td>exampled_1.0.bb</td></tr><tr><td>Layer</td><td>一組有組織的Metadata，包含Recipes、設定及Classes等，可依功能／硬體／產品分層。</td><td>meta-company</td></tr><tr><td>Image</td><td>描述最終Root Filesystem內容及相關輸出；Image Recipe指定要納入的Packages與Features。</td><td>core-image-minimal</td></tr><tr><td>bbappend</td><td>擴充或修改既有Recipe的Metadata，不需直接修改上游.bb。</td><td>exampled_%.bbappend</td></tr></tbody></table></div><h3>Recipe常見欄位</h3><div class="tablewrap"><table><thead><tr><th>欄位／Task</th><th>用途</th></tr></thead><tbody><tr><td>SRC_URI／SRCREV</td><td>Source與Patch來源，以及Git等來源的Revision。</td></tr><tr><td>LICENSE／LIC_FILES_CHKSUM</td><td>License聲明與來源License內容的檢查資訊。</td></tr><tr><td>DEPENDS</td><td>Build-time Recipe依賴。</td></tr><tr><td>RDEPENDS:${PN}</td><td>某個輸出Package的Runtime依賴。</td></tr><tr><td>do_install</td><td>將檔案安裝到Recipe的暫存目的目錄${D}。</td></tr><tr><td>FILES:${PN}</td><td>指定哪些已安裝檔案屬於該Package。</td></tr><tr><td>IMAGE_INSTALL</td><td>Image要安裝哪些Package；不是任意Recipe都能直接當Package名稱。</td></tr></tbody></table></div><div class="note">一個Recipe可能產生多個Packages，例如主程式、Library與Debug Symbols。編譯成功不代表檔案已被Package收錄，也不代表Package已進入最終Image。</div><p><b>Debug順序：</b>先確認Recipe實際被選到，再檢查do_install輸出、Package內容與Image安裝清單；遇到問題不必一開始就清掉整個Build Cache。</p><p class="refline">參考：<a href="https://docs.yoctoproject.org/5.1/overview-manual/concepts.html">Yocto Project Concepts</a></p></section><section id="em-devtool"><div class="kicker">1.3 / EMBEDDED SYSTEM</div><h2>什麼是devtool？modify、build與deploy怎麼用？</h2><p><code>devtool</code>協助在Yocto Build環境或eSDK中修改既有Recipe的Source、建置及測試，並將修改整理回正式Layer。</p><div class="tablewrap"><table><thead><tr><th>指令</th><th>做什麼</th><th>要留意什麼</th></tr></thead><tbody><tr><td>devtool modify exampled</td><td>取出Recipe Source、套用既有Patch，建立或使用開發用Source Tree與Workspace設定。</td><td>它改變的是開發來源的使用方式；不會自動完成正式Patch整合。</td></tr><tr><td>devtool build exampled</td><td>依Recipe及Workspace Source執行建置所需Task。</td><td>不是每次重建整份Image，也不是直接把程式送到Target。</td></tr><tr><td>devtool deploy-target exampled user@target</td><td>將do_install產出的檔案部署到可SSH連線的Target。</td><td>常用子命令名稱是deploy-target；不是devtool deploy。</td></tr><tr><td>devtool undeploy-target exampled user@target</td><td>撤回這次Development Deployment。</td><td>不是整機Snapshot，仍須確認Target狀態。</td></tr><tr><td>devtool finish exampled /path/to/layer</td><td>將已Commit的修改整理到指定Layer，並結束Workspace修改狀態。</td><td>先確認Git Commit及輸出Patch，再驗證正式Build。</td></tr></tbody></table></div><div class="codebox"><pre><code># Build Host：先進入專案已初始化的Build環境
+devtool modify exampled
+devtool status
+
+# 到devtool顯示的Source目錄修改程式，再回Build目錄執行
+devtool build exampled
+
+# 部署前先依下一節停止受影響Service
+devtool deploy-target exampled root@bmc.example.com</code></pre><button class="copy" type="button">複製</button></div><div class="note">deploy-target會繞過Target的Package Manager，也不會自動部署所有Runtime Dependencies。Target需有相容Library、可寫入的路徑及足夠權限；它適合開發驗證，正式交付仍應整合Layer並重新產生Package／Image。</div><p class="refline">參考：<a href="https://docs.yoctoproject.org/5.1/ref-manual/devtool-reference.html">Yocto 5.1 devtool Quick Reference</a></p></section><section id="em-systemd"><div class="kicker">1.4 / EMBEDDED SYSTEM</div><h2>systemd、start／enable與新Daemon快速驗證</h2><p><b>systemd</b>是Linux常見的System與Service Manager，通常作為PID 1運作，以Unit管理Service、Socket、Timer及Dependency等。<code>systemctl</code>是操作它的工具。</p><h3>正確指令順序是systemctl start SERVICE</h3><div class="tablewrap"><table><thead><tr><th>指令</th><th>立即影響</th><th>之後是否自動啟動</th></tr></thead><tbody><tr><td>systemctl start exampled.service</td><td>現在啟動Service。</td><td>不會因此建立開機啟用設定。</td></tr><tr><td>systemctl enable exampled.service</td><td>依[Install]建立啟用連結；單獨使用通常不會立即啟動。</td><td>在對應Target／啟動條件到達時可被啟動。</td></tr><tr><td>systemctl enable --now exampled.service</td><td>啟用並立即啟動。</td><td>依Unit啟用規則運作。</td></tr><tr><td>systemctl restart exampled.service</td><td>停止後重新啟動。</td><td>不改變Enable狀態。</td></tr><tr><td>systemctl daemon-reload</td><td>重新讀取Unit設定與Dependency。</td><td>不會自行Restart既有Process。</td></tr><tr><td>systemctl reload exampled.service</td><td>要求Daemon重新載入自身設定；需Service支援。</td><td>不同於daemon-reload。</td></tr></tbody></table></div><p class="small">Static Unit可能沒有[Install]，但仍可由Dependency或Socket／D-Bus Activation啟動。enabled不代表目前active；disabled也不代表不可能被其他Unit拉起。</p><h3>Build完新的System Daemon，如何快速驗證？</h3><p>範例Recipe／Service／Binary均使用exampled；實際名稱可能不同。先確認Service影響範圍，再在開發Target進行以下操作。</p><div class="codebox"><pre><code># Terminal A，Build Host：先停止Target上的舊Process
+TARGET=&#x27;root@bmc.example.com&#x27;
+ssh &quot;$TARGET&quot; &#x27;systemctl stop exampled.service&#x27;
+
+# 在已完成devtool build的環境部署新檔案
+devtool deploy-target exampled &quot;$TARGET&quot;</code></pre><button class="copy" type="button">複製</button></div><div class="codebox"><pre><code># Terminal B，Target：若新增或修改Unit，先重新讀取
+systemctl daemon-reload
+systemctl start exampled.service
+systemctl status exampled.service --no-pager
+journalctl -u exampled.service -b -n 100 --no-pager
+systemctl show exampled.service -p MainPID -p ExecStart -p User
+sha256sum /usr/bin/exampled</code></pre><button class="copy" type="button">複製</button></div><ol class="steps"><li>確認正在跑的是新Binary、正確ExecStart與設定；不能只確認檔案已Copy。</li><li>觸發一個可觀察的真實功能，例如D-Bus Method、資料更新或API查詢，核對結果與Log。</li><li>檢查Restart／Crash、CPU與Memory，並在結束後撤回臨時部署或整合正式Image。</li></ol><p>若直接執行Binary可成功，但透過systemd失敗，對照User、Environment、WorkingDirectory、Dependency及Sandbox設定。需要Foreground Debug時先停原Service，避免爭用D-Bus Name、Port或硬體。</p><p class="refline">參考：<a href="https://www.freedesktop.org/software/systemd/man/latest/systemctl.html">systemctl Manual</a>；<a href="https://docs.yoctoproject.org/5.1/ref-manual/devtool-reference.html">Yocto 5.1 devtool Quick Reference</a></p></section><section id="em-git"><div class="kicker">1.5 / EMBEDDED SYSTEM</div><h2>Git基本開發流程</h2><p>基本路徑是：同步Remote資訊、建立工作Branch、修改、Review Diff、Commit、測試、Push，再建立MR／PR。以下假設Repo已有origin/main；實際主線名稱依專案調整。</p><div class="codebox"><pre><code>git status
+git fetch origin
+git switch -c feature/exampled-log origin/main
+
+# 修改Source後，檢查及選擇要提交的檔案
+git diff
+git add src/exampled.cpp
+git diff --cached
+git commit -m &quot;Fix exampled error logging&quot;
+
+# 執行與修改相關的Build及測試後
+git log --oneline -5
+git push -u origin feature/exampled-log</code></pre><button class="copy" type="button">複製</button></div><div class="note">Working Tree是目前檔案；Staging Area是下次Commit要收錄的內容；Commit是版本紀錄。fetch更新Remote Tracking資訊，不會自動把工作Branch合併到最新版。</div><p>先確認status與Diff，避免把Build產物、密碼或無關修改放入Commit。送Review時交代問題、修改後行為與驗證方式。</p><p class="refline">參考：<a href="https://git-scm.com/docs/gitworkflows">Git Workflows</a></p></section><section id="em-git-integrate"><div class="kicker">1.6 / EMBEDDED SYSTEM</div><h2>git rebase、git merge與git cherry-pick</h2><h3>Rebase與Merge的差異</h3><div class="tablewrap"><table><thead><tr><th>面向</th><th>Merge</th><th>Rebase</th></tr></thead><tbody><tr><td>作用</td><td>整合另一條Branch的歷史。</td><td>將目前Branch的Commits重新套用到新的Base。</td></tr><tr><td>Commit ID</td><td>原有Commit保持；非Fast-forward整合通常產生Merge Commit。</td><td>被重新套用的Commit通常產生新ID；歷史會改寫。</td></tr><tr><td>歷史形狀</td><td>保留分支與整合關係；Fast-forward可能只移動Branch Pointer。</td><td>通常整理成較線性的歷史。</td></tr><tr><td>常見用途</td><td>整合共用Branch，保留協作歷史。</td><td>整理尚未共享的個人Branch，跟上最新主線。</td></tr></tbody></table></div><div class="codebox"><pre><code># 先確保Working Tree乾淨；以下兩種方式擇一
+# A：在目前工作Branch合併最新主線
+git fetch origin
+git merge origin/main
+
+# B：在目前工作Branch重新套用到最新主線
+git rebase origin/main</code></pre><button class="copy" type="button">複製</button></div><p>遇到Conflict時，讀懂兩邊意圖、修改檔案、<code>git add</code>後使用對應的<code>--continue</code>；想回到操作前可用該操作的<code>--abort</code>。整合後重新Build與測試。不要任意Rebase他人正在使用的共用歷史。</p><h3>Cherry-pick：挑選特定修正</h3><p><code>git cherry-pick</code>把指定Commit引入的變更套到目前Branch，通常產生新Commit。適合將一個Fix移植到Release Branch；不是直接合併整條來源Branch。</p><div class="codebox"><pre><code># 假設已在正確的目的Branch；先看實際Commit內容
+git show abc1234
+git cherry-pick -x abc1234
+
+# 若發生Conflict：修正檔案、git add之後
+git cherry-pick --continue
+
+# 若決定取消此次Cherry-pick，改用：
+# git cherry-pick --abort</code></pre><button class="copy" type="button">複製</button></div><p><code>abc1234</code>是範例，請替換成真實Commit。<code>-x</code>留下來源Commit資訊。即使套用沒有Conflict，仍可能缺少前置修正或不符合舊Branch API，必須重新驗證。</p><p class="refline">參考：<a href="https://git-scm.com/docs/git-merge">git-merge</a>、<a href="https://git-scm.com/docs/git-rebase">git-rebase</a>與<a href="https://git-scm.com/docs/git-cherry-pick">git-cherry-pick</a></p></section><section id="em-resources"><div class="kicker">1.7 / EMBEDDED SYSTEM</div><h2>怎麼看CPU Usage與Memory使用量？</h2><div class="codebox"><pre><code># Target：觀察整體狀態
+top
+free -h
+cat /proc/meminfo
+
+# 以下適用procps工具；PID請替換成實際Process ID
+PID=1234
+top -H -p &quot;$PID&quot;
+ps -p &quot;$PID&quot; -o pid,ppid,comm,%cpu,%mem,rss,vsz
+cat &quot;/proc/$PID/status&quot;
+
+# Kernel及權限允許時，查看較完整的Process Memory統計
+cat &quot;/proc/$PID/smaps_rollup&quot;</code></pre><button class="copy" type="button">複製</button></div><div class="tablewrap"><table><thead><tr><th>觀察值</th><th>如何判讀</th></tr></thead><tbody><tr><td>CPU %</td><td>看採樣期間、Thread與CPU數量；多Thread Process在常見顯示模式下可能超過100%。ps的%CPU通常反映執行期間平均，與top即時採樣不同。</td></tr><tr><td>Load Average</td><td>反映Runnable與部分Uninterruptible工作負載；不是CPU百分比。</td></tr><tr><td>RSS／VSZ</td><td>RSS是Resident Memory；VSZ是Virtual Address Space大小，不能直接當作實際RAM使用量。</td></tr><tr><td>PSS</td><td>依共享比例分攤Memory，有助比較共享Library較多的Process；需Kernel支援。</td></tr><tr><td>MemAvailable／Cache</td><td>可用Memory要考慮可回收Cache；free很少不等於發生Memory Leak。</td></tr><tr><td>時間趨勢</td><td>固定操作條件，反覆觸發並比較；單次數字不能證明Leak。</td></tr></tbody></table></div><p class="small">Embedded Image可能只有BusyBox，選項與GNU／procps版本不同。先看<code>--help</code>；缺少完整工具時可讀/proc，或在開發Image加入所需診斷套件。</p><p class="refline">參考：<a href="https://man7.org/linux/man-pages/man1/top.1.html">top</a>、<a href="https://man7.org/linux/man-pages/man1/free.1.html">free</a>與Linux /proc文件</p></section><section id="em-services"><div class="kicker">1.8 / EMBEDDED SYSTEM</div><h2>怎麼檢查Service與Port？</h2><div class="codebox"><pre><code># Target：Process與Unit不等於同一件事
+systemctl status exampled.service --no-pager
+systemctl is-active exampled.service
+systemctl is-enabled exampled.service
+journalctl -u exampled.service -b -n 100 --no-pager
+systemctl list-units --type=socket --all
+
+# TCP Listener與UDP Socket；顯示Process資訊通常需要較高權限
+ss -lntp
+ss -lunp
+
+# 本機確認HTTPS服務；需替換成相符的Hostname與CA
+curl --cacert /path/to/bmc-ca.pem -i https://bmc.example.com/redfish/v1/</code></pre><button class="copy" type="button">複製</button></div><ol class="steps"><li>先確認Service是否啟動、是否反覆Restart，並讀取Log。</li><li>確認是否真的Listen、綁定哪個Address／Port，以及擁有Socket的Process。</li><li>本機可用但遠端不通時，檢查路由、Firewall、Bind Address與Network Namespace。</li><li>TCP可連線但API失敗時，再檢查TLS、Authentication及Application回應。</li></ol><div class="note">Service可以只提供D-Bus介面，完全沒有TCP／UDP Port。Socket Activation也可能先由systemd持有Listener；不能只用Process名稱判斷Port是否存在。UDP沒有TCP式的Listen Handshake。</div><p class="refline">參考：<a href="https://www.freedesktop.org/software/systemd/man/latest/systemctl.html">systemctl Manual</a>；<a href="https://man7.org/linux/man-pages/man8/ss.8.html">ss Manual</a></p></section><section id="em-gdb"><div class="kicker">1.9 / EMBEDDED SYSTEM</div><h2>什麼是GDB？基本使用情境</h2><p><b>GDB（GNU Debugger）</b>可以在程式執行時設Breakpoint、單步執行、讀取變數與Call Stack，也能分析Core Dump。常見情境是Crash、卡住、邏輯走錯路徑及多Thread問題。</p><p>先準備與實際Binary匹配的Debug Symbols；<code>-g</code>產生除錯資訊，最佳化會影響變數與單步觀察。開發時可視建置政策使用<code>-Og</code>；不要假設Release Binary一定保留Symbols。</p><div class="codebox"><pre><code># 在支援該程式架構、且具備Symbols的環境
+# A：啟動程式除錯
+gdb --args ./exampled --config ./example.conf
+
+# B：Attach既有Process；PID為範例，擇一使用
+# gdb -p 1234
+
+# C：分析與Binary同一Build的Core Dump
+# gdb ./exampled ./core.exampled</code></pre><button class="copy" type="button">複製</button></div><div class="codebox"><pre><code># GDB Prompt內的常用指令
+break main
+run
+next
+step
+print variable_name
+bt
+info threads
+thread apply all bt
+continue
+
+# Attach情境結束時可detach，讓Process繼續執行
+# detach</code></pre><button class="copy" type="button">複製</button></div><h3>Embedded常用：Host GDB＋Target gdbserver</h3><div class="codebox"><pre><code># Target：PID為範例；只在受控Debug網路開放此Port
+gdbserver --attach :2345 1234
+
+# Build Host：使用支援Target架構的SDK GDB或gdb-multiarch
+# 載入同一Build、未Strip的Binary
+# 以下是在GDB Prompt內：
+file /path/to/unstripped/exampled
+set sysroot /path/to/target-sysroot
+target remote bmc.example.com:2345
+thread apply all bt
+continue</code></pre><button class="copy" type="button">複製</button></div><div class="note">Attach／Breakpoint通常會暫停Process，可能觸發Watchdog、Timeout或改變時序。使用對應Binary、Library、Architecture與Symbols；不要把Host Library誤當Target Library。gdbserver本身不提供完整Authentication保護。</div><p>Crash先看<code>bt</code>及各Thread；Hang先看Thread是否等Lock、I/O或Event。看到某行Code不等於已找到Root Cause，還需結合Log、輸入條件與可重現實驗。</p><p class="refline">參考：<a href="https://sourceware.org/gdb/current/onlinedocs/gdb/">GDB Manual</a></p></section><section id="em-dt"><div class="kicker">1.10 / EMBEDDED SYSTEM</div><h2>什麼是DTS、DTC與DTB？怎麼Debug？</h2><p><b>Device Tree</b>描述硬體拓樸與參數，讓Kernel知道有哪些裝置及如何匹配Driver。它不是Driver程式碼。</p><div class="tablewrap"><table><thead><tr><th>名詞</th><th>用途</th></tr></thead><tbody><tr><td>DTS</td><td>Device Tree Source，可閱讀的硬體描述檔，副檔名.dts。</td></tr><tr><td>DTSI</td><td>共用Include片段，常描述SoC或共用Board資訊。</td></tr><tr><td>DTC</td><td>Device Tree Compiler，將Source與Binary格式互相轉換的工具。</td></tr><tr><td>DTB</td><td>Device Tree Blob，編譯後的Binary，通常由Boot Firmware傳給Kernel。</td></tr></tbody></table></div><div class="codebox"><pre><code># Build Host：獨立且不需C Preprocessor的簡單DTS範例
+dtc -I dts -O dtb -o board.dtb board.dts
+
+# 反編譯既有DTB，以便比對
+dtc -I dtb -O dts -o decoded.dts board.dtb
+
+# Target：若有dtc，查看Kernel實際使用的Live Device Tree
+dtc -I fs -O dts -o running.dts /sys/firmware/devicetree/base
+
+# 查看Boot與Driver Probe相關訊息
+dmesg
+cat /sys/kernel/debug/devices_deferred</code></pre><button class="copy" type="button">複製</button></div><p class="small">最後一項需Kernel提供相關Debug資訊並掛載debugfs。Linux Kernel DTS常使用#include、Macro與專案Build規則，不能一律直接丟給dtc；應優先使用Kernel／Yocto的正式DTB建置流程。</p><h3>裝置沒有出現時，怎麼查？</h3><ol class="steps"><li>先核對Bootloader載入的DTB及Live Device Tree，確認修改真的進到執行中的系統。</li><li>檢查Node的status、compatible及Parent Bus；再核對Driver是否有編入／載入。</li><li>依Binding核對reg、interrupts、clocks、resets、pinctrl與供電等Property。</li><li>看Probe Log與Deferred Probe，區分缺少Dependency或Hardware未回應。</li><li>比對Binding與Schematic；能跑dtc不代表符合所有Binding或硬體接線。</li></ol><div class="note">反編譯DTB通常無法還原原始Include結構、註解與所有Label。若修改DTS但行為沒變，第一步應確認載入的是哪份DTB，而非直接再改Driver。</div><p class="refline">參考：<a href="https://docs.kernel.org/devicetree/usage-model.html">Linux Devicetree Usage Model</a>；<a href="https://devicetree-specification.readthedocs.io/en/stable/source-language.html">Devicetree Specification</a></p></section><section id="em-cross"><div class="kicker">1.11 / EMBEDDED SYSTEM</div><h2>Toolchain、Cross-compilation與常見問題</h2><p><b>Toolchain</b>是一組開發工具，包含Compiler、Assembler、Linker、Binary Utilities及相關Runtime／Header等配套；SDK通常還提供Sysroot與環境設定。</p><p><b>Cross-compilation</b>是在Build Machine上產生給另一個執行環境使用的Binary，例如在x86-64 Linux建置ARM BMC程式。Sysroot提供目標環境的Headers與Libraries，避免混入Build Host的檔案。</p><div class="tablewrap"><table><thead><tr><th>情境</th><th>機器角色</th></tr></thead><tbody><tr><td>一般Application Cross-build</td><td>Build是執行Compiler的機器；Autotools的Host是產出程式預計執行的機器。</td></tr><tr><td>建置Compiler等工具</td><td>Target可能另外表示該Compiler要產生哪個平台的程式。不要把所有語境的host／target當成同一定義。</td></tr></tbody></table></div><div class="codebox"><pre><code># Build Host：source專案產生、與Target Image匹配的SDK環境
+# 檔名為範例，請使用實際安裝路徑
+. /opt/sdk/environment-setup-armv7a-poky-linux-gnueabi
+
+# Yocto SDK的CC可能包含必要Flags，依SDK指引使用
+$CC $CFLAGS --sysroot=&quot;$SDKTARGETSYSROOT&quot; hello.c -o hello $LDFLAGS
+file hello
+readelf -h hello
+readelf -l hello
+readelf -d hello</code></pre><button class="copy" type="button">複製</button></div><div class="tablewrap"><table><thead><tr><th>症狀</th><th>常見原因</th><th>調查與處理</th></tr></thead><tbody><tr><td>Exec format error</td><td>用了Host Compiler、Architecture或ABI不符。</td><td>檢查file／readelf與SDK環境，使用正確Compiler並重建。</td></tr><tr><td>檔案存在卻No such file or directory</td><td>可能缺少ELF Interpreter，也可能是Script的Shebang問題。</td><td>用readelf -l看Interpreter，核對Target路徑。</td></tr><tr><td>找不到.so／GLIBC或GLIBCXX版本不符</td><td>Target Runtime與SDK／Library不匹配。</td><td>核對NEEDED、Loader與Library版本；用匹配Sysroot重建，勿隨意覆蓋系統libc。</td></tr><tr><td>找不到Header或Library</td><td>缺Build Dependency、Sysroot或pkg-config路徑錯誤。</td><td>補Recipe DEPENDS；確認Build工具使用Target Sysroot，避免抓Host Library。</td></tr><tr><td>undefined reference</td><td>Link Library、順序、ABI、C／C++ Symbol等有問題。</td><td>檢查Link Command與Symbols；使用匹配Toolchain及Dependency。</td></tr><tr><td>Configure測試程式無法執行</td><td>Build流程想直接執行Target Binary。</td><td>使用Build System的Cross設定、適當Cache或受支援Emulator；不能直接當Host程式跑。</td></tr><tr><td>Target執行Illegal instruction</td><td>CPU指令集／浮點ABI等選項不符。</td><td>核對Machine／Tune與Compiler Flags。</td></tr></tbody></table></div><p class="small">Yocto Recipe內通常已有Toolchain與Sysroot設定，優先修Metadata或Build設定。切換Toolchain後不要沿用不相容的CMake Cache／Object檔。</p><p class="refline">參考：<a href="https://docs.yoctoproject.org/5.1/sdk-manual/intro.html">Yocto SDK Manual</a>；<a href="https://sourceware.org/binutils/docs/binutils/readelf.html">GNU readelf</a></p></section><section id="em-dbus"><div class="kicker">1.12 / EMBEDDED SYSTEM</div><h2>什麼是D-Bus？Method／Signal差異與Debug</h2><p><b>D-Bus</b>是常用於Linux的IPC機制，讓Process以明確的Object與Interface交換Message。System Bus通常服務系統Daemon；Session／User Bus則用於使用者環境。OpenBMC常以System Bus連接管理Service。</p><div class="tablewrap"><table><thead><tr><th>元素</th><th>代表什麼</th><th>範例</th></tr></thead><tbody><tr><td>Bus Name</td><td>Service在Bus上的名稱。</td><td>org.freedesktop.systemd1</td></tr><tr><td>Object Path</td><td>Service內某個物件的位置。</td><td>/org/freedesktop/systemd1</td></tr><tr><td>Interface</td><td>某組Method、Property與Signal的約定。</td><td>org.freedesktop.systemd1.Manager</td></tr><tr><td>Member</td><td>Interface中的Method或Signal名稱。</td><td>ListUnits</td></tr><tr><td>Signature</td><td>參數與回傳值的型別編碼。</td><td>s是string，b是boolean，u是uint32；a表示array。</td></tr></tbody></table></div><h3>D-Bus Method與Signal有什麼不同？</h3><div class="tablewrap"><table><thead><tr><th>面向</th><th>Method</th><th>Signal</th></tr></thead><tbody><tr><td>用途</td><td>向特定Service／Object提出請求。</td><td>通知狀態改變或事件。</td></tr><tr><td>回應</td><td>通常收到Method Return或Error；可有不要求回覆的呼叫。</td><td>沒有Method式的Return／Error回覆。</td></tr><tr><td>傳遞模式</td><td>有明確目的地與方法名稱。</td><td>常讓符合Match Rule的訂閱者接收，也可指定目的地。</td></tr><tr><td>例子</td><td>呼叫ListUnits取得Unit清單。</td><td>PropertiesChanged通知Property變更。</td></tr></tbody></table></div><p>D-Bus Property透過<code>org.freedesktop.DBus.Properties</code>的Get／Set等Method存取；變更通知常使用PropertiesChanged。不是每個Property都保證發出相同通知，要看Interface定義與Annotation。</p><h3>Debug順序：先探索，再讀取／呼叫，最後監看事件</h3><div class="codebox"><pre><code># Target：以下使用常見的systemd介面，先探索實際內容
+busctl --system list
+busctl --system tree org.freedesktop.systemd1
+busctl --system introspect org.freedesktop.systemd1   /org/freedesktop/systemd1
+
+# 讀取Property；需平台提供此Property
+busctl --system get-property org.freedesktop.systemd1   /org/freedesktop/systemd1   org.freedesktop.systemd1.Manager Version
+
+# Read-only Method範例，無輸入參數所以不需額外Signature
+busctl --system call org.freedesktop.systemd1   /org/freedesktop/systemd1   org.freedesktop.systemd1.Manager ListUnits
+
+# 另一個Terminal監看Service訊息，以Ctrl+C結束
+busctl --system monitor org.freedesktop.systemd1</code></pre><button class="copy" type="button">複製</button></div><ol class="steps"><li>確認連到System或User Bus，以及目標Bus Name目前是否有人持有。</li><li>核對Object Path、Interface、Member與Signature；不要只根據Source裡的名稱猜測。</li><li>先Introspect，再Get或Call，保存Error Name與Message。</li><li>觀察Signal時先啟動Monitor，再觸發事件；Signal通常不會替晚到的Client保存歷史，必要時先Get目前狀態。</li><li>查Service Log、Access Policy與Process Event Loop；Timeout可能是Handler卡住，不只代表Bus不通。</li></ol><div class="note">systemd Unit名稱與D-Bus Bus Name是不同識別方式；可由busctl status查Owner Process，再對照systemctl及journal。Method Call完成只代表API呼叫完成；若設計為非同步工作，仍須依介面約定追蹤後續狀態。</div><details open><summary>整合練習：新的Daemon看起來沒作用</summary><p>先確認部署的Binary與正在跑的PID，再看Unit／Journal；確認D-Bus Name與Object是否存在，Introspect後觸發Read-only Method或Get Property，並監看相關Signal。若資料仍不更新，再往Service Event Loop、Driver與Hardware路徑調查。</p></details><p class="refline">參考：<a href="https://dbus.freedesktop.org/doc/dbus-specification.html">D-Bus Specification</a>；<a href="https://www.freedesktop.org/software/systemd/man/latest/busctl.html">busctl Manual</a></p></section><div class="partbanner"><div class="kicker">PART 2</div><h2>第二部分：AI</h2><p>把AI用在工程工作與學習，建立可檢查、可回饋的協作流程。</p></div><section id="ai-use"><div class="kicker">2.1 / AI FOR ENGINEERING</div><h2>如何使用AI？</h2><p class="intro">把AI當成協助閱讀、分析、產生草稿與執行工具的工作夥伴。工程師仍要定義目標、提供背景，並以Source、Build、Test及實際行為確認結果。</p><p>對Embedded／BMC工程師，最容易開始的任務是解讀Log、整理陌生Code、比較Spec、產生小型Script及設計Debug實驗。先選擇有明確輸入與驗收方式的工作。</p><div class="tablewrap"><table><thead><tr><th>步驟</th><th>你要做什麼</th><th>例子</th></tr></thead><tbody><tr><td>1. 定義結果</td><td>說清楚要得到哪個可檢查的產出。</td><td>整理Service啟動失敗的可能原因與下一步實驗。</td></tr><tr><td>2. 提供證據</td><td>提供環境、版本、相關Source、Log與已試過的方法。</td><td>Unit檔、Journal節錄、Binary更新方式及重現步驟。</td></tr><tr><td>3. 要求可判讀的輸出</td><td>區分觀察事實、假設、待補資料及驗證方法。</td><td>用表格列出每個假設對應的Log證據。</td></tr><tr><td>4. 執行小步驗證</td><td>先做能縮小問題範圍的實驗。</td><td>確認ExecStart與實際PID，再比對前景執行結果。</td></tr><tr><td>5. 回饋及收斂</td><td>提供新Log與結果，讓下一輪分析建立在實際證據上。</td><td>排除已驗證不成立的假設，再選下一個實驗。</td></tr></tbody></table></div><div class="note">AI可能產生不存在的Function、Recipe、CLI選項或Spec敘述。遇到版本與平台細節，要求指出來源並自行核對；也要分清楚它「建議執行」與「已實際執行」的內容。</div><p class="small">使用公司核准的工具，依資料政策處理Code、Log與文件；先移除密碼、Token及不必要的個人資訊。</p><p class="refline">參考：<a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI Prompt Engineering Guide</a>；本章案例為教學設計</p></section><section id="ai-efficiency"><div class="kicker">2.2 / AI FOR ENGINEERING</div><h2>如何用AI加速工作效率？</h2><p>優先減少重複整理與搜尋，把時間留給判斷與驗證。效率應以完成可接受成果的總時間衡量，包含Review與修正成本。</p><div class="tablewrap"><table><thead><tr><th>工作情境</th><th>AI可協助的部分</th><th>你如何驗收</th></tr></thead><tbody><tr><td>Log分析</td><td>建立事件時間線、分群Error、列出可驗證假設。</td><td>核對原始行號、時間與因果；相鄰事件不一定互為因果。</td></tr><tr><td>閱讀Code</td><td>找入口、Call Path、Dependency及資料流。</td><td>確認File／Symbol真的存在，抽查呼叫關係。</td></tr><tr><td>小型修改</td><td>產生局部Patch、錯誤處理或資料轉換Script。</td><td>Review Diff，Build並測試正常與失敗路徑。</td></tr><tr><td>測試設計</td><td>依修改列出邊界條件與Regression情境。</td><td>看是否能抓到實際風險，而非只重述實作。</td></tr><tr><td>Spec／文件</td><td>比較要求、整理表格或撰寫操作步驟。</td><td>核對版本、原文位置與實際平台支援。</td></tr><tr><td>工作溝通</td><td>把技術紀錄整理成Issue、MR描述或進度摘要。</td><td>確認事實、Owner、日期及未完成項目。</td></tr></tbody></table></div><h3>可直接使用的Debug Prompt</h3><div class="codebox"><pre><code>目標：協助找出exampled.service在部署新Binary後啟動失敗的原因。
+環境：ARM Embedded Linux、systemd；版本資訊如下。
+提供資料：Unit檔、相關Source、Journal節錄與部署步驟。
+已確認：舊版可啟動；新版在前景執行的結果也附在下方。
+
+請先列出已知事實，再提出最多3個有證據支持的假設。
+每個假設說明：依據、最小驗證步驟、預期結果，以及能排除什麼。
+資料不足時請明確標示，不要把猜測寫成Root Cause。
+目前先分析，不修改Source或Target設定。</code></pre><button class="copy" type="button">複製</button></div><h3>如何知道真的有變快？</h3><p>比較同類任務的完成時間、Review修正次數、一次驗收通過情況與後續Regression。不要只用AI產出的Code行數、回覆長度或單次回答速度當作成效。</p><p class="refline">參考：<a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI Prompt Engineering Guide</a>；效率衡量與Debug範例為本教材建議</p></section><section id="ai-learning"><div class="kicker">2.3 / AI FOR ENGINEERING</div><h2>如何用AI學習與成長？</h2><p>讓AI依你的既有知識解釋新概念，再用自己的話重述、做小實驗及回查原始文件。學會的標準是能解釋、能操作，也能在條件改變時重新推理。</p><div class="tablewrap"><table><thead><tr><th>學習方式</th><th>怎麼問</th><th>如何確認理解</th></tr></thead><tbody><tr><td>從熟悉概念切入</td><td>我熟悉Linux Process與Socket，請用這個背景解釋D-Bus。</td><td>說出類比適用範圍與限制。</td></tr><tr><td>由淺入深</td><td>先說明用途，再說資料流，最後帶一個實作例子。</td><td>不看答案重畫資料流或說明操作順序。</td></tr><tr><td>主動回想</td><td>先問我一題，等我回答後再指出錯誤與遺漏。</td><td>自行回答並解釋理由。</td></tr><tr><td>做最小實驗</td><td>設計一個可比較systemctl start與enable效果的練習。</td><td>記錄命令、觀察及結論。</td></tr><tr><td>比較與反例</td><td>GET回應內容不同，為什麼仍可能具Idempotency？</td><td>換成DELETE、PATCH及POST再分析。</td></tr><tr><td>回顧錯誤</td><td>把我答錯的地方整理成概念缺口與下一個練習。</td><td>隔一段時間用新情境重做。</td></tr></tbody></table></div><div class="codebox"><pre><code>我有Embedded Linux經驗，但沒有使用過Redfish。
+請先用我熟悉的Daemon、IPC與資料結構解釋Resource和Schema。
+每次只介紹一個重點，接著出一題開放式問題，等我回答。
+請指出我理解正確與需要修正的地方，再安排下一個小練習。
+最後附上可以核對的官方文件位置。</code></pre><button class="copy" type="button">複製</button></div><div class="note">要求AI提供結論依據、關鍵假設與可重現步驟。閱讀完整答案後，關閉答案再自己做一次，比只複製指令更容易看出理解缺口。</div><p>面試準備可以用AI練習敘述自己的Debug案例、做模擬問答，再回到真實經驗與實作結果。不要把AI生成的專案或成果當成自己實際完成的經歷。</p><p class="refline">參考：<a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI Prompt Engineering Guide</a>；學習練習為本教材建議</p></section><section id="ai-prompt"><div class="kicker">2.4 / AI FOR ENGINEERING</div><h2>什麼是Prompt Engineering？</h2><p class="intro"><b>Prompt Engineering是設計與改進給模型的指令，讓輸出更符合任務需求的過程。</b>重點是目標、限制、例子與驗收條件清楚，並以實際案例檢驗效果。</p><div class="tablewrap"><table><thead><tr><th>Prompt要素</th><th>工程情境例子</th></tr></thead><tbody><tr><td>目標</td><td>找出Build Fail的直接原因，提出最小修改。</td></tr><tr><td>必要背景</td><td>Yocto版本、MACHINE、Recipe名稱與錯誤Task。</td></tr><tr><td>限制</td><td>沿用既有Library，不引入新Dependency；只修改指定範圍。</td></tr><tr><td>輸出形式</td><td>先列證據與假設，再提供Patch及驗證步驟。</td></tr><tr><td>驗收條件</td><td>指定Recipe可Build；原功能仍正常，失敗路徑有適當處理。</td></tr><tr><td>必要例子</td><td>提供一筆期望輸入與輸出，或符合團隊風格的範例。</td></tr></tbody></table></div><h3>從模糊要求，改成可處理的任務</h3><div class="codebox"><pre><code>模糊：幫我修這個Yocto Error。
+
+具體：以下是exampled的do_compile失敗Log、Recipe及CMakeLists.txt。
+環境是專案目前使用的Yocto版本與MACHINE，資訊如下。
+請定位第一個有意義的編譯錯誤，引用對應Log與Source位置。
+提出最小修改，說明原因、可能影響及如何重新Build驗證。
+先不要清除整個Build Cache，也不要修改其他Recipe。</code></pre><button class="copy" type="button">複製</button></div><p>先用少量代表案例測試Prompt，檢查是否漏掉限制或誤讀資料，再修正指令。角色設定可以提供語氣與觀點，但不能代替Source或驗證；也沒有一段措辭能保證模型永遠正確。</p><p class="refline">參考：<a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI Prompt Engineering Guide</a></p></section><section id="ai-context"><div class="kicker">2.5 / AI FOR ENGINEERING</div><h2>什麼是Context Engineering？</h2><p class="intro"><b>Context Engineering是設計、選取及管理模型在每個工作階段能看到的資訊。</b>它涵蓋指令、文件、Source、工具定義與結果、目前進度及相關歷史。</p><p>Prompt偏重「這次要做什麼、怎麼要求」；Context還要處理「需要哪些資料、何時取得、哪些已過期、目前有哪些已確認事實」。</p><div class="tablewrap"><table><thead><tr><th>Context內容</th><th>Embedded／BMC例子</th><th>管理重點</th></tr></thead><tbody><tr><td>環境與版本</td><td>MACHINE、Branch、Commit、BIOS／BMC版本。</td><td>避免把不同Build或平台的結果混在一起。</td></tr><tr><td>相關證據</td><td>錯誤Log前後文、Unit檔、Recipe與相關Source。</td><td>保留來源、行號、時間與單位。</td></tr><tr><td>規範與知識</td><td>官方Spec、介面Schema、專案開發規則。</td><td>標示版本與適用範圍，依問題取用。</td></tr><tr><td>工具與觀察</td><td>Build結果、Test輸出、D-Bus Introspection。</td><td>記錄在哪裡執行、是否成功與是否被截斷。</td></tr><tr><td>任務狀態</td><td>已排除假設、目前修改、待驗證項目。</td><td>長任務定期更新，保留重要決策依據。</td></tr></tbody></table></div><h3>給AI的Context Package範例</h3><div class="codebox"><pre><code>問題：更新exampled後，某個Redfish Resource仍顯示舊值。
+環境：平台／Firmware／Branch／Commit與部署方式。
+預期：指定操作後，Property應更新為何值。
+實際：原始Response、D-Bus讀值及相關Log。
+相關檔案：Unit、Service Source與API Mapping，附版本位置。
+已做實驗：每一步操作、觀察、已排除與仍待確認的假設。
+本次範圍：先定位資料在哪一層停止更新。</code></pre><button class="copy" type="button">複製</button></div><div class="note">相關且新鮮的資料比大量無關資料更有用。可以先提供索引與摘要，再按需讀取原文；摘要要保留證據出處與未解問題。把資料放進Context，不等於更新模型的訓練權重，也不保證之後每個Session都會記得。</div><p>文件與Log是待分析的資料；其中夾帶的指令應按資料來源與任務授權處理，不能自動變成Agent的操作規則。檢索到的資料也要核對是否適用目前平台。</p><p class="refline">參考：<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic：Effective Context Engineering for AI Agents</a></p></section><section id="ai-harness"><div class="kicker">2.6 / AI FOR ENGINEERING</div><h2>什麼是Harness Engineering？</h2><p class="intro"><b>Harness Engineering是設計AI Agent周圍的工作環境、工具、執行流程及回饋機制，讓它能持續完成並驗證任務。</b>這個用語仍在演進，不同實作的邊界可能不同；本教材以Coding Agent的工作系統來理解。</p><p>Harness通常負責把「模型提出動作、呼叫工具、讀取結果、更新狀態、再決定下一步」串起來。工程重點也包括Repo可讀性、可重現的Build、測試介面與失敗後如何恢復。</p>
+<h3>三個Engineering的差異</h3><div class="tablewrap"><table><thead><tr><th>概念</th><th>主要問題</th><th>同一個Bug Fix中的例子</th></tr></thead><tbody><tr><td>Prompt Engineering</td><td>如何把任務與要求說清楚？</td><td>修正D-Bus Property沒有更新的問題，限制修改範圍並交代驗收。</td></tr><tr><td>Context Engineering</td><td>每一步需要看到哪些正確資訊？</td><td>提供對應版本的Source、Interface定義、Log及已做過的實驗。</td></tr><tr><td>Harness Engineering</td><td>如何讓Agent操作、觀察並確認完成？</td><td>準備可用的Repo、Build／Test工具、執行限制、結果紀錄與停止條件。</td></tr></tbody></table></div><p>三者互相影響，分類有重疊；不必把它們理解成互斥技術或固定的發展階段。</p><h3>Embedded開發的Harness可以包含哪些東西？</h3><div class="tablewrap"><table><thead><tr><th>組成</th><th>實際例子</th></tr></thead><tbody><tr><td>可理解的專案</td><td>簡短入口文件，連到Architecture、Build Guide及Code Owner規則。</td></tr><tr><td>可操作的工具</td><td>已設定的Toolchain、Recipe Build、Test Runner與Log擷取介面。</td></tr><tr><td>明確的操作範圍</td><td>指定可修改的目錄、Target及可執行動作；將工具權限落實在執行環境。</td></tr><tr><td>回饋與驗收</td><td>Build Exit Code、測試結果、Diff與實際功能輸出；失敗結果回傳給Agent。</td></tr><tr><td>狀態與恢復</td><td>保留Patch、進度與失敗紀錄，知道何時重試、回復或交由人處理。</td></tr><tr><td>持續改善</td><td>用一組代表任務評估完成品質，將重複失敗整理成文件、工具或測試改進。</td></tr></tbody></table></div><h3>一個可實作的工作循環</h3><ol class="steps"><li>接收Issue與驗收條件，讀取目前Repo及環境狀態。</li><li>取得必要證據，重現問題或明確記錄無法重現的原因。</li><li>產生局部修改，檢查Diff並執行相關Build及測試。</li><li>依失敗輸出修正假設；遇到未具備的硬體、權限或依賴時記錄阻礙。</li><li>符合驗收後交付修改與證據；達到時間／次數上限或無法取得關鍵資訊時停止並回報。</li></ol>
+<div class="note">本機Build成功只能證明該Build通過。若功能需要實體BMC，Harness要有對應Hardware Test才能自動確認，否則應明確標示待Target驗證。Prompt裡要求「自行測試」不會憑空提供Toolchain或硬體。</div>
+<details open><summary>整合練習：你會如何讓AI協助修一個Daemon Bug？</summary><p>分別寫出一段Prompt、一份Context清單，以及需要準備的Harness能力。接著定義：怎麼知道有修好、怎麼知道沒有實際測到、什麼情況應停止重試。</p></details><p class="refline">參考：<a href="https://openai.com/index/harness-engineering/">OpenAI：Harness Engineering</a>；工程範例為本教材的應用整理</p></section><div class="partbanner"><div class="kicker">PART 3</div><h2>第三部分：Redfish（加分）</h2><p>認識Resource導向的管理介面、Schema與驗證工具。</p></div>
+<section id="rf-what"><div class="kicker">3.1 / WHAT IS REDFISH?</div><h2>什麼是Redfish？</h2>
+<p class="intro">Redfish是DMTF制定的系統管理標準，結合RESTful介面、HTTPS、JSON與標準化Schema，讓Client能以一致的資料模型查詢及管理伺服器等設備。</p>
+<div class="grid"><div class="card"><b>HTTPS：如何傳送</b><p>Client送出HTTP Request，TLS保護傳輸並驗證對端。</p></div><div class="card"><b>JSON：資料如何表示</b><p>用Property與Value描述版本、電源狀態或硬體資訊。</p></div><div class="card"><b>Schema：資料代表什麼</b><p>定義Resource的型別、Property語意、可用操作及限制。</p></div></div>
+<p>對Embedded工程師而言，Redfish可視為Firmware對外提供的一層管理API。底層仍須有實際的Sensor、Inventory、Power與Update等功能實作；換成HTTPS並不會讓Driver或Hardware存取工作消失。</p>
+<div class="note">IPMI不是Redfish的必經路徑。在OpenBMC中，兩者可以使用共同的底層Service或D-Bus資料；不代表每個Redfish Request都要轉成IPMI Command。</div>
+<h3>第一個Read-only Request</h3><p>以下用Bash與curl讀取Service Root。Hostname、帳號與CA檔案都要替換；Hostname需與BMC憑證相符。curl會提示輸入密碼。</p>
+<div class="codebox"><pre><code>BMC_HOST='bmc.example.com'
+BMC_USER='your_user'
+BMC_CA='/path/to/bmc-ca.pem'
+
+curl --cacert "$BMC_CA" --user "$BMC_USER" \
+  -i -H 'Accept: application/json' \
+  "https://$BMC_HOST/redfish/v1/"</code></pre><button class="copy" type="button">複製</button></div>
+<p class="small"><code>-i</code>同時顯示Response Headers與Body。範例使用Basic Authentication over HTTPS；Redfish也提供Session Token機制。若使用Token，後續Request仍需帶上對應的Authentication Header。</p>
+<p class="refline">依據：<a href="https://www.dmtf.org/standards/redfish">DMTF Redfish</a>與<a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP2060_1.1.0.pdf">Redfish User Guide v1.1.0</a>。</p></section>
+
+<section id="rf-why"><div class="kicker">3.2 / MOTIVATION</div><h2>為什麼需要Redfish？</h2>
+<p>當管理需求從單台伺服器的Power、Sensors與SEL，擴大到大量、多廠商、複雜硬體的Inventory與Automation時，需要更容易擴充、探索及整合的標準介面。</p>
+<div class="tablewrap"><table><thead><tr><th>管理需求</th><th>Redfish提供的方式</th></tr></thead><tbody>
+<tr><td>看懂硬體與功能之間的關係</td><td>以Systems、Chassis、Managers等Resource及Link表達資料。</td></tr>
+<tr><td>減少各廠商專用資料格式的差異</td><td>用標準Schema定義共同語意，並保留Oem擴充機制。</td></tr>
+<tr><td>整合既有軟體工具</td><td>使用HTTPS與JSON，可搭配curl、Python及各種HTTP Client。</td></tr>
+<tr><td>處理耗時的管理工作</td><td>以Task等機制追蹤非同步操作，並支援Event通知等管理能力。</td></tr>
+</tbody></table></div>
+<div class="note">有標準Schema不代表每台平台都實作全部功能。Client仍須確認Resource、Property、Action、Schema版本與權限；IPMI與Redfish也可能同時存在。</div>
+<p class="refline">依據：<a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP2044_1.0.4.pdf">DMTF Redfish White Paper v1.0.4</a>。</p></section>
+
+<section id="rf-compare"><div class="kicker">3.3 / TRADE-OFFS</div><h2>Redfish相較於IPMI的優缺點</h2>
+<p>以下比較的是常見設計取捨；實際資源用量、效能與功能覆蓋，仍須在目標平台量測及確認。</p>
+<div class="tablewrap"><table><thead><tr><th>面向</th><th>IPMI</th><th>Redfish</th></tr></thead><tbody>
+<tr><td>操作模型</td><td>以Command與二進位欄位為主。</td><td>以URI、Resource與Property為主，便於描述物件關係。</td></tr>
+<tr><td>資料可讀性</td><td>工具會解碼；Raw資料需要對照欄位規格。</td><td>JSON較容易閱讀及使用通用Parser，但Payload通常較大。</td></tr>
+<tr><td>資料模型與擴充</td><td>基本管理功能成熟；新增能力可能使用OEM Command。</td><td>Schema涵蓋較廣的管理需求；仍可能有Oem差異與Optional功能。</td></tr>
+<tr><td>工具整合</td><td>ipmitool及既有維運工具普及。</td><td>容易使用HTTP函式庫、JSON與Web生態工具整合。</td></tr>
+<tr><td>實作成本</td><td>Command本身通常精簡；也需實作驗證與平台Handler。</td><td>需處理TLS、HTTP、JSON、Schema與API生命週期，增加實作及驗證工作。</td></tr>
+<tr><td>資源與效能</td><td>二進位Payload較精簡，適合既有簡單操作。</td><td>HTTP／TLS與JSON有額外成本；可透過Session重用及資料組織降低部分負擔，需實測。</td></tr>
+<tr><td>Security</td><td>lanplus支援驗證、Integrity與Encryption，仍取決於Cipher及設定。</td><td>採HTTPS／TLS與標準管理機制；仍須正確處理憑證、權限及API漏洞。</td></tr>
+<tr><td>既有相容性</td><td>既有Host In-band與維運流程常已使用IPMI。</td><td>遷移需修改Client與流程；不能假設能直接取代KCS或既有SOL。</td></tr>
+</tbody></table></div><p><b>對工程師的意義：</b>Redfish讓API整合與資料理解更容易，同時增加Web Protocol、Data Model與Compatibility的學習及實作需求。不能只用「比較新」來判斷它在所有情境都較好。</p>
+<p class="refline">整理依據：DMTF Redfish White Paper與本教材第四部分；效能與開發成本為依協定構成做的工程比較，非平台Benchmark結論。</p></section>
+
+<section id="rf-rest"><div class="kicker">3.4 / RESTFUL</div><h2>什麼是RESTful？</h2>
+<p><b>REST（Representational State Transfer）是一種架構風格。</b>RESTful表示介面設計遵循REST的原則。對本教材，先掌握「以Resource為中心，透過標準介面交換它的Representation」。</p>
+<div class="tablewrap"><table><thead><tr><th>REST概念</th><th>入門理解</th></tr></thead><tbody>
+<tr><td>Client–Server</td><td>Client負責發出需求，Server提供資料與操作能力，雙方可以分別演進。</td></tr>
+<tr><td>Stateless</td><td>每個Request帶足處理所需的資訊，不依賴隱含的前一步操作上下文。</td></tr>
+<tr><td>Uniform Interface</td><td>以一致方式識別Resource、交換Representation，並透過Link導覽。</td></tr>
+<tr><td>Cache</td><td>Response應表明能否快取；即時狀態需考慮資料新鮮度。</td></tr>
+<tr><td>Layered System</td><td>Client可經由中介層與Service互動，不需知道所有內部實作。</td></tr>
+<tr><td>Code-on-demand（Optional）</td><td>可選擇性下載程式碼給Client執行；Redfish入門不需從這一項開始。</td></tr>
+</tbody></table></div><div class="note"><b>Stateless不等於Server不能保存資料或Authentication Session。</b>伺服器可以有Resource狀態與Session Token；Client每次仍需送出完整的目標URI、Method、驗證資訊及必要Payload。</div>
+<h3>HTTP Method如何表達操作？</h3><div class="tablewrap"><table><thead><tr><th>Method</th><th>用途</th><th>Redfish例子</th></tr></thead><tbody>
+<tr><td>GET</td><td>讀取Representation</td><td>查詢System的PowerState。</td></tr><tr><td>PATCH</td><td>部分修改Resource</td><td>修改平台允許寫入的AssetTag。</td></tr><tr><td>PUT</td><td>替換Resource的表示內容</td><td>只在目標Resource／Service支援時使用，不能假設所有Redfish URI都支援。</td></tr><tr><td>POST</td><td>新增Resource或執行Action</td><td>建立Session，或對Reset Action送出Request。</td></tr><tr><td>DELETE</td><td>刪除可刪除的Resource</td><td>刪除一個Session。</td></tr></tbody></table></div>
+<p>URL看起來像階層路徑、使用HTTP或回傳JSON，都不足以單獨證明API符合REST。還要看Resource、Method語意、Representation與Link等設計。</p>
+<p class="refline">依據：<a href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Fielding Dissertation，第5章</a>與<a href="https://www.rfc-editor.org/rfc/rfc9110.html">RFC 9110</a>。</p></section>
+
+<section id="rf-resource"><div class="kicker">3.5 / RESOURCE & REPRESENTATION</div><h2>什麼是REST Resource？</h2>
+<p><b>Resource是API中可被識別、查詢或操作的概念對象。</b>它可以代表一個System、一個Manager、一組Chassis，或一個Task。Resource不必是檔案，也不必一對一對應某顆硬體。</p>
+<div class="tablewrap"><table><thead><tr><th>概念</th><th>範例</th><th>要區分的事情</th></tr></thead><tbody>
+<tr><td>Resource</td><td>一個受管理的ComputerSystem</td><td>被管理的對象本身。</td></tr><tr><td>URI</td><td><code>/redfish/v1/Systems/system</code></td><td>識別及定位該Resource的位址；<code>system</code>只是範例ID。</td></tr><tr><td>Representation</td><td>GET回傳的JSON</td><td>該Resource在當下的一種表示，不是Resource本身。</td></tr><tr><td>Property</td><td><code>PowerState</code></td><td>Resource中的資料欄位，不一定能寫入或單獨作為URI。</td></tr><tr><td>Collection</td><td><code>/redfish/v1/Systems</code></td><td>以Members連結到成員Resource。</td></tr><tr><td>Action</td><td><code>ComputerSystem.Reset</code></td><td>對Resource執行操作；應使用回應中公布的target。</td></tr></tbody></table></div>
+<h3>讀懂一段JSON</h3><p>以下是教學用節錄，不是完整Response，也不是固定平台路徑。</p><div class="codebox"><pre><code>{
+  "@odata.id": "/redfish/v1/Systems/system",
+  "Id": "system",
+  "Name": "Example Host",
+  "PowerState": "On",
+  "Status": {
+    "State": "Enabled",
+    "Health": "OK"
+  }
+}</code></pre><button class="copy" type="button">複製</button></div><p><code>@odata.id</code>是此Resource的識別URI；<code>PowerState</code>是讀到的電源狀態。要改變電源，應查閱Resource支援的Reset Action，不能直接假設可以PATCH <code>PowerState</code>。</p>
+<h3>從Service Root探索</h3><ol class="steps"><li>GET <code>/redfish/v1/</code>，找到Systems、Chassis與Managers等Link。</li><li>跟隨Systems的<code>@odata.id</code>，讀取Collection。</li><li>從<code>Members</code>中的<code>@odata.id</code>選擇實際System，再GET其內容。</li><li>需要操作時，核對Property權限、Actions、Allowable Values與ActionInfo。</li></ol>
+<div class="note">Systems描述受管理的運算系統；Chassis描述機箱等實體容納結構；Managers描述BMC等管理控制器。不要把三者視為同一個物件，也不要把範例ID硬寫成所有平台通用的路徑。</div>
+<p class="refline">依據：<a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP2060_1.1.0.pdf">DMTF Redfish User Guide v1.1.0</a>。</p></section>
+
+<section id="rf-status"><div class="kicker">3.6 / HTTP STATUS CODES</div><h2>常見的HTTPS Return Code</h2><p>更精確的名稱是<b>HTTP Status Code</b>。HTTPS是在TLS上傳送HTTP，Status Code的語意相同。TLS Handshake或憑證驗證失敗時，Client可能尚未取得任何HTTP Response。</p>
+<div class="tablewrap"><table><thead><tr><th>類別</th><th>入門判讀</th></tr></thead><tbody><tr><td>2xx</td><td>成功或已接受，仍需看是否非同步及Body內容。</td></tr><tr><td>3xx</td><td>重新導向，讀取Location。</td></tr><tr><td>4xx</td><td>Request、驗證、權限或目前條件需要調整。</td></tr><tr><td>5xx</td><td>Server或中介層無法完成處理。</td></tr></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>Code</th><th>名稱</th><th>意義與下一步</th></tr></thead><tbody>
+<tr><td>200</td><td>OK</td><td>成功；仍檢查Body與ExtendedInfo，尤其是多Property修改的部分成功情境。</td></tr>
+<tr><td>201</td><td>Created</td><td>已建立Resource；檢查Location及新Resource。</td></tr>
+<tr><td>202</td><td>Accepted</td><td>已接受但尚未完成；Redfish通常以Location指向Task Monitor，需繼續追蹤。</td></tr>
+<tr><td>204</td><td>No Content</td><td>成功且沒有Response Body；不要強制將空Body解析為JSON。</td></tr>
+<tr><td>301 / 302</td><td>Moved Permanently / Found</td><td>永久／暫時Redirect；部分Client可能在重新導向時把POST改為GET。</td></tr>
+<tr><td>307 / 308</td><td>Temporary / Permanent Redirect</td><td>保留Method的Redirect；依Location處理，留意Host與驗證資訊。</td></tr>
+<tr><td>400</td><td>Bad Request</td><td>Request有問題；檢查JSON、Property、型別及參數。</td></tr>
+<tr><td>401</td><td>Unauthorized</td><td>缺少有效Authentication；檢查密碼、Token與是否過期。</td></tr>
+<tr><td>403</td><td>Forbidden</td><td>Server拒絕此Request；常見原因是Privilege不足。</td></tr>
+<tr><td>404</td><td>Not Found</td><td>找不到目標Resource；確認URI、ID及平台支援情況。</td></tr>
+<tr><td>405</td><td>Method Not Allowed</td><td>目標Resource不允許該Method；查看Allow Header。</td></tr>
+<tr><td>409</td><td>Conflict</td><td>操作與目前Resource狀態衝突；檢查前置條件與錯誤訊息。</td></tr>
+<tr><td>412</td><td>Precondition Failed</td><td>條件式Request未成立，例如If-Match與目前ETag不符。</td></tr>
+<tr><td>415</td><td>Unsupported Media Type</td><td>Request內容格式不支援；檢查Content-Type。</td></tr>
+<tr><td>429</td><td>Too Many Requests</td><td>觸發Rate Limit；若有Retry-After，依它及重試策略降低請求頻率。</td></tr>
+<tr><td>500</td><td>Internal Server Error</td><td>Server內部錯誤；保存Request、Response與BMC Log。</td></tr>
+<tr><td>501</td><td>Not Implemented</td><td>Server未實作所需功能，例如不認得或未支援的Method。</td></tr>
+<tr><td>503</td><td>Service Unavailable</td><td>暫時無法服務；確認初始化、維護或負載狀態，以及Retry-After。</td></tr>
+</tbody></table></div>
+<h3>讀Response的順序</h3><ol class="steps"><li><b>Status Code：</b>先分辨成功、非同步、Redirect或錯誤。</li><li><b>Headers：</b>看Content-Type、Location、ETag、Allow或Retry-After。</li><li><b>Body：</b>看實際Resource，或錯誤回應中的<code>error</code>、<code>@Message.ExtendedInfo</code>與<code>MessageId</code>等細節。</li><li><b>讀回／追蹤：</b>修改後確認實際值；非同步操作追蹤到最終結果。</li></ol>
+<div class="note">Status Code不是Firmware內部錯誤碼或IPMI Completion Code。只看到500不能直接推論是Driver錯誤；只看到200，也不能略過Response內容。</div>
+<p class="refline">依據：<a href="https://www.rfc-editor.org/rfc/rfc9110.html">RFC 9110</a>、<a href="https://www.rfc-editor.org/rfc/rfc6585.html">RFC 6585</a>及DMTF DSP0266 v1.25.0。</p></section>
+
+<section id="rf-idempotency"><div class="kicker">3.7 / IDEMPOTENCY & RETRY</div><h2>什麼是Idempotency？</h2>
+<p class="intro">Idempotency（冪等性）是指：<b>相同Request執行一次或多次，對Server產生的預期效果相同。</b>它不要求每次Response Body或Status Code完全相同。</p>
+<div class="grid"><div class="card"><b>設定值：設成Lab-A</b><p>重複設定同一個固定值，通常不會累積新的效果。</p></div><div class="card"><b>操作：增加一次</b><p>每做一次就再增加，不能視為相同效果。</p></div><div class="card"><b>觸發：重新開機</b><p>重複送出可能再次觸發Reset，不可盲目重試。</p></div></div>
+<h3>Safe與Idempotent是兩件事</h3><p><b>Safe：</b>Client沒有要求變更Server狀態，例如GET。<b>Idempotent：</b>允許變更狀態，但重複相同操作的預期效果不會持續累積，例如DELETE。</p>
+<div class="tablewrap"><table><thead><tr><th>Method</th><th>HTTP的一般語意</th><th>Redfish／面試理解重點</th></tr></thead><tbody>
+<tr><td>GET / HEAD</td><td>Safe且Idempotent。</td><td>重複查詢不要求改變資源，但Sensor值仍可能隨時間變化。</td></tr>
+<tr><td>PUT</td><td>Idempotent，非Safe。</td><td>以相同內容替換；需先確認Service是否支援。</td></tr>
+<tr><td>DELETE</td><td>Idempotent，非Safe。</td><td>第一次刪除後，第二次可回404；目標仍維持已刪除。</td></tr>
+<tr><td>POST</td><td>不保證Idempotent，非Safe。</td><td>重複建立Resource或觸發Action可能產生額外效果。</td></tr>
+<tr><td>PATCH</td><td>一般HTTP不保證Idempotent，非Safe；取決於修改語意。</td><td>Redfish規範建議：無外部變更時PATCH應具Idempotency，但ETag可能已不同。</td></tr>
+</tbody></table></div>
+<h3>Redfish例子：固定設定一個Property</h3><p>假設平台允許修改此Chassis的AssetTag，以下只表示Request語意。URI是範例；實作前需先Discovery並確認權限。</p><div class="codebox"><pre><code>PATCH /redfish/v1/Chassis/chassis
+Content-Type: application/json
+
+{"AssetTag":"Lab-A"}</code></pre><button class="copy" type="button">複製</button></div>
+<p>在沒有外部變更的前提下，送一次或多次的預期結果都是<code>AssetTag = Lab-A</code>。但是，若第一次Request已更新ETag，再用舊<code>If-Match</code>重送，可能收到412；這不等於Property設定不是Idempotent。</p>
+<h3>為什麼Embedded工程師需要理解？</h3><p>Network Timeout只代表Client未取得結果，不代表Server沒有執行。若對Reset Action自動重送POST，可能再次觸發Reset；若是建立Resource，則可能重複建立。</p>
+<ol class="steps"><li>先確認Method與操作的語意，不能所有Timeout都套用相同Retry。</li><li>若已拿到Task Monitor或新Resource的Location，優先查詢它。</li><li>若修改結果不確定，先讀回Resource，核對預期值與目前狀態。</li><li>若使用ETag／If-Match，衝突後重新讀取並評估，避免覆蓋別人的變更。</li></ol>
+<details open><summary>讀完後，試著回答</summary><ul><li>為什麼GET兩次讀到不同溫度，仍可具有Idempotency？</li><li>收到202後，為什麼不能直接宣告Firmware Update成功？</li><li>DELETE第一次回204、第二次回404，是否違反Idempotency？</li><li>POST Reset後Timeout，你會先收集什麼資訊，再決定是否重試？</li></ul></details>
+<p class="refline">依據：<a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2">RFC 9110 §9.2.2</a>、<a href="https://www.rfc-editor.org/rfc/rfc5789.html">RFC 5789</a>與<a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP0266_1.25.0.pdf">DMTF DSP0266 v1.25.0 §7.6–7.11</a>。</p></section>
+
+
+<section id="rf-schema"><div class="kicker">3.8 / SCHEMA BASICS</div><h2>什麼是Schema？</h2>
+<p class="intro"><b>Schema是資料模型的定義與約定。</b>在Redfish中，它描述Resource有哪些Property、資料型別及語意、可用Action，以及相關限制，讓Client與Service對同一份資料有共同理解。</p>
+<p>如果你熟悉C／C++，可以先把Schema類比成「型別宣告加上介面規格」：它不只列出欄位，還說明欄位的用途、有效值與操作規則。不過Schema不是記憶體Layout，也不是BMC的Driver實作。</p>
+<div class="tablewrap"><table><thead><tr><th>概念</th><th>Embedded類比</th><th>Redfish例子</th></tr></thead><tbody>
+<tr><td>Schema</td><td>型別與介面定義</td><td>Manager的資料模型。</td></tr><tr><td>Resource</td><td>一個可識別的物件</td><td>平台上的某個BMC Manager。</td></tr><tr><td>Payload</td><td>一次序列化後的物件資料</td><td>GET該Manager時回傳的JSON。</td></tr><tr><td>Service Implementation</td><td>實際執行邏輯</td><td>取得Firmware Version，再產生符合Schema的Response。</td></tr>
+</tbody></table></div>
+<h3>Schema與JSON Payload有什麼不同？</h3><p>以下是Manager Resource的教學用節錄；URI與版本值是範例。</p>
+<div class="codebox"><pre><code>{
+  "@odata.type": "#Manager.v1_17_0.Manager",
+  "@odata.id": "/redfish/v1/Managers/bmc",
+  "Id": "bmc",
+  "Name": "Example BMC",
+  "FirmwareVersion": "1.2.3"
+}</code></pre><button class="copy" type="button">複製</button></div>
+<p><code>@odata.type</code>宣告此Resource使用的型別與Schema版本。<code>Manager.v1_17_0.Manager</code>表示Manager Namespace中的對應版本與型別，<b>不是BMC Firmware版本，也不是Redfish Protocol版本</b>；Firmware版本則在<code>FirmwareVersion</code>。</p>
+<h3>常見Schema表示格式</h3><p>DMTF提供CSDL（Common Schema Definition Language，常見為XML）與JSON Schema等機器可讀格式，並提供便於閱讀的Data Model文件。兩者都在描述資料模型；不能因為Response是JSON，就認為驗證工具一定使用JSON Schema。</p>
+<div class="note">Schema定義「應如何表示資料」；Payload是「這次實際回傳的資料」。JSON語法正確只代表可以解析，不代表符合Schema或符合真實硬體狀態。</div>
+<p class="refline">依據：DMTF DSP0266、<a href="https://redfish.dmtf.org/schemas/v1/Manager.v1_17_0.json">Manager v1.17.0 JSON Schema</a>。</p></section>
+
+<section id="rf-schema-defines"><div class="kicker">3.9 / READING A SCHEMA</div><h2>Schema定義了哪些東西？</h2>
+<div class="tablewrap"><table><thead><tr><th>定義內容</th><th>你可以從中知道什麼</th><th>常見欄位／概念</th></tr></thead><tbody>
+<tr><td>Resource與型別</td><td>這是哪種Resource、繼承或參照哪些型別。</td><td>Namespace、Type、Version、Reference。</td></tr>
+<tr><td>Property與語意</td><td>欄位名稱、大小寫與代表的意義。</td><td>properties、description、longDescription。</td></tr>
+<tr><td>資料型別與結構</td><td>是string、boolean、integer、number、object或array。</td><td>type、items、$ref。</td></tr>
+<tr><td>是否可為null</td><td>欄位出現時，是否允許沒有可用值。</td><td>Nullable或包含null的型別定義。</td></tr>
+<tr><td>必需欄位</td><td>Service必須提供哪些Property，建立時Client必須送哪些欄位。</td><td>Required與RequiredOnCreate是不同要求。</td></tr>
+<tr><td>讀寫規則</td><td>Property是Read-only、Read-write或Write-only。</td><td>Permissions；JSON Schema中的readonly、writeOnly。</td></tr>
+<tr><td>有效值與範圍</td><td>Enum、數值上下限、字串格式及單位。</td><td>enum、minimum、maximum、pattern、units。</td></tr>
+<tr><td>Resource關係</td><td>哪些Property連結到其他Resource或Collection。</td><td>Reference、Link與URI Pattern。</td></tr>
+<tr><td>Action與參數</td><td>可定義哪些Action、參數型別與要求。</td><td>Actions、Parameters、RequiredParameter。</td></tr>
+<tr><td>版本與演進</td><td>Property或Enum從哪個版本加入、何時Deprecated。</td><td>versionAdded、versionDeprecated等Annotation。</td></tr>
+</tbody></table></div>
+<h3>實際讀一個Property定義</h3><p>以下節錄Manager v1.17.0中FirmwareVersion的型別與讀寫限制：</p>
+<div class="codebox"><pre><code>"FirmwareVersion": {
+  "readonly": true,
+  "type": ["string", "null"]
+}</code></pre><button class="copy" type="button">複製</button></div>
+<p>因此<code>"FirmwareVersion": "1.2.3"</code>的型別符合此定義；<code>"FirmwareVersion": 123</code>則不符合。即使它是合法JSON，也不能把number當成string。<code>readonly: true</code>表示Client不能用PATCH直接修改此欄位。</p>
+<div class="note"><b>三個容易混淆的地方：</b><ul><li>允許null不等於允許缺少Property；是否必需出現要另外看Required。</li><li>Schema允許Read-write，不代表每個平台都一定可寫，也不代表每個帳號都有權限。</li><li>Schema列出完整Enum或Action，不代表平台支援全部；還需看實際Capability、Allowable Values及ActionInfo。</li></ul></div>
+<p>Schema、Protocol Specification與Privilege／Interop Profile要一起理解。Schema本身不會規定Firmware內部怎麼讀I²C，也不能保證平台具備所有Optional功能。</p>
+<details open><summary>面試前的閱讀練習</summary><p>拿到一份陌生Resource時，先找<code>@odata.type</code>，再核對對應版本的Schema。選三個Property，說明它們的型別、語意、是否可寫及是否允許null；最後說明如何用實際Response確認平台支援範圍。</p></details>
+<p class="refline">依據：DMTF DSP0266的Schema Annotation章節與<a href="https://redfish.dmtf.org/schemas/v1/Manager.v1_17_0.json">Manager v1.17.0</a>。表中的名稱可能依CSDL與JSON Schema格式而不同。</p></section>
+
+<section id="rf-validator"><div class="kicker">3.10 / REDFISH SERVICE VALIDATOR</div><h2>什麼是Redfish Service Validator？</h2>
+<p class="intro"><b>Redfish Service Validator是DMTF提供的開源Python工具，主要透過GET取得Resource Response，依Redfish CSDL Schema檢查資料模型的一致性。</b></p>
+<p>可以把它理解成自動化的「介面資料檢查員」：找出Resource，再核對宣告的型別與Property。它不需要知道底層Firmware如何取得資料。</p>
+<div class="tablewrap"><table><thead><tr><th>常見檢查</th><th>可能發現的問題</th></tr></thead><tbody>
+<tr><td>Resource存取與JSON</td><td>GET失敗、Response不是可解析的JSON Object。</td></tr>
+<tr><td>Schema與版本</td><td>@odata.type有誤，或找不到對應Schema。</td></tr>
+<tr><td>Property結構與型別</td><td>缺少Required Property，或用number回傳string欄位。</td></tr>
+<tr><td>值與限制</td><td>Enum大小寫錯誤、數值超出範圍或格式不符。</td></tr>
+<tr><td>Link與Action宣告</td><td>Resource參照異常，或Action不屬於宣告的Resource型別。</td></tr>
+</tbody></table></div>
+<div class="note"><b>Validator Pass的範圍要看清楚。</b>它不能證明Sensor讀值符合實際硬體，也不代表POST／PATCH／DELETE、Reset、Firmware Update或Security測試全部通過。Resource資料檢查以GET為範圍；Session Authentication本身仍可能涉及建立與刪除Session。</div>
+<h3>如何開始使用？</h3><p>以下是閱讀與操作範例，不要求面試者事前有可連線的BMC。先依官方README安裝工具與Dependencies，再使用該版本提供的Configuration Template設定目標及驗證資訊。</p>
+<div class="codebox"><pre><code># 取得工具並安裝到獨立的Python環境
+ git clone https://github.com/DMTF/Redfish-Service-Validator.git
+ cd Redfish-Service-Validator
+ python3 -m venv .venv
+ . .venv/bin/activate
+ python -m pip install -r requirements.txt
+
+# 查看目前版本的參數
+ python RedfishServiceValidator.py --help
+
+# 將官方Configuration Template另存為validator.ini並完成設定後：
+# 只檢查Service Root
+ python RedfishServiceValidator.py --config ./validator.ini \
+   --payload Single /redfish/v1/ --logdir ./logs-single
+
+# 從Service Root探索Resource Tree
+ python RedfishServiceValidator.py --config ./validator.ini \
+   --payload Tree /redfish/v1/ --logdir ./logs-tree</code></pre><button class="copy" type="button">複製</button></div>
+<p class="small">實際執行前需設定Service URL、帳號及Authentication方式，並備妥對應Schema或讓工具可取得Schema。含密碼的Configuration檔只保存在受控環境，不要放進共用教材或Git。</p>
+<h3>看到Fail，怎麼調查？</h3><ol class="steps"><li>先定位失敗的URI、Property、Error與預期型別。</li><li>保存該次GET的Headers及JSON，核對@odata.type與Schema版本。</li><li>區分Service資料錯誤，或Network、Authentication、Schema下載／版本等測試環境問題。</li><li>若是資料錯誤，再往API Mapping、D-Bus、Driver或Hardware追查；修改後先重測Single，再擴大到Tree。</li></ol>
+<p>報告需連同工具版本、Schema、測試範圍、帳號權限及跳過項目一起看。只測Single或限制Collection數量，就不能把結果描述成所有Resource都驗證完成。</p>
+<details open><summary>讀完後，試著回答</summary><ul><li>為什麼GET回200且JSON可以解析，Validator仍可能Fail？</li><li>FirmwareVersion回傳number時，應先修資料型別，還是先改Schema宣告？為什麼？</li><li>Validator Pass，是否能證明Reset Action真的會讓Host重新開機？還需要什麼測試？</li></ul></details>
+<p class="refline">依據：<a href="https://github.com/DMTF/Redfish-Service-Validator/blob/main/README.md">DMTF Redfish Service Validator README</a>（2026-11-09查閱）。</p></section>
+
+<div class="partbanner"><div class="kicker">PART 4</div><h2>第四部分：IPMI（加分）</h2><p>從Embedded Linux經驗出發，認識BMC與基本管理操作。</p></div>
+<section id="basics"><div class="kicker">4.1 / CONCEPTS</div><h2>從Embedded System經驗，認識BMC</h2>
+<div class="note"><b>閱讀前提：</b>你已接觸過Embedded Linux、C／C++或BSP／Driver開發，但不需要事先知道BMC或IPMI。這份教材用來建立面試前的共同背景；實作部分若沒有BMC硬體，也可以先閱讀指令用途與Debug思路。</div>
+<p><b>學習目標：</b>能說明Host與BMC的差異、選擇基本IPMI查詢指令，並將問題拆成Network、Service、Driver與Hardware等層次來調查。</p>
+<h3>你熟悉的技術，可以怎麼用在BMC？</h3>
+<div class="tablewrap"><table><thead><tr><th>既有經驗</th><th>BMC工作中的連結</th><th>本教材的切入點</th></tr></thead><tbody>
+<tr><td>Embedded Linux／BSP</td><td>理解BMC上的OS、Driver與User-space Service</td><td>IPMI只是對外管理介面，背後仍需Firmware實作</td></tr>
+<tr><td>I²C／Driver／hwmon</td><td>追查Sensor資料如何從硬體送到管理介面</td><td>讀值異常時，分層比對資料與單位</td></tr>
+<tr><td>UART／Serial Console</td><td>理解Host Console與SOL的關係</td><td>區分Session連線與Serial資料來源</td></tr>
+<tr><td>Network／Socket</td><td>調查IPMI over LAN的連線與Session問題</td><td>區分網路可達、驗證成功與指令成功</td></tr>
+<tr><td>Firmware Update</td><td>檢查Image相容性、啟用版本與恢復方式</td><td>區分BMC Update與BIOS Update</td></tr>
+<tr><td>C／C++與Debug</td><td>閱讀Service程式、分析Log與追蹤錯誤回傳</td><td>以證據建立假設，再用實驗縮小範圍</td></tr>
+</tbody></table></div>
+<h3>Host、BMC、IPMI與ipmitool</h3>
+<p>Host是執行主要工作負載的伺服器系統，包含CPU、BIOS與Host OS。BMC則是獨立的管理控制器，具有自己的Firmware與管理功能；在Standby Power仍供電的設計下，Host關機後BMC仍可運作。實際可讀取的資訊，仍取決於平台與電源狀態。</p><p class="intro">BMC（Baseboard Management Controller）是伺服器上的管理控制器；IPMI（Intelligent Platform Management Interface）是一套管理介面規範；<code>ipmitool</code>則是操作IPMI的Command-line Tool。</p><div class="grid"><div class="card"><b>Access</b><p>建立管理連線，讀取BMC識別資料。</p></div><div class="card"><b>Monitoring</b><p>查看Sensors、FRU與SEL，了解平台狀態。</p></div><div class="card"><b>Control</b><p>控制Host電源，透過SOL存取Serial Console。</p></div></div>
+<div class="tablewrap"><table><thead><tr><th>連線方式</th><th>操作位置</th><th>常見介面</th><th>前提</th></tr></thead><tbody><tr><td>Out-of-band</td><td>管理用電腦</td><td>IPMI over LAN / <code>lanplus</code></td><td>BMC網路可達、IPMI LAN已啟用、帳號有權限</td></tr><tr><td>In-band</td><td>受測伺服器的Host OS</td><td>System Interface / <code>open</code>，常見底層為KCS</td><td>Host可執行工具，且有可用的IPMI Driver與Device Node</td></tr></tbody></table></div><div class="note">IPMI、Redfish與Web UI是不同的管理介面。第三部分介紹Redfish與REST概念，第四部分補充IPMI；不需要先有Web開發經驗。OpenBMC是一套BMC Firmware實作，IPMI則是它可提供的管理介面之一。</div></section>
+
+<section id="connect"><div class="kicker">4.2 / FIRST CONNECTION</div><h2>建立第一個IPMI連線</h2><p>以下範例在管理端Linux的Bash執行，請先安裝<code>ipmitool</code>。IP與帳號均為範例，請改成受測平台的資料；密碼由終端機提示輸入。</p>
+<div class="codebox"><pre><code># 確認工具版本
+ipmitool -V
+
+# 設定受測平台，請替換成實際資料
+BMC_IP='192.0.2.10'
+BMC_USER='your_user'
+
+# Bash Function：後續範例統一使用 ipmi
+ipmi() {
+  ipmitool -I lanplus -C 17 -H "$BMC_IP" -U "$BMC_USER" -a "$@"
+}
+
+# 第一個Read-only測試
+ipmi mc info</code></pre><button class="copy" type="button">複製</button></div>
+<div class="tablewrap"><table><thead><tr><th>參數</th><th>用途</th></tr></thead><tbody><tr><td><code>-I lanplus</code></td><td>使用IPMI v2.0的LAN介面。</td></tr><tr><td><code>-C 17</code></td><td>指定Cipher Suite 17，需由Client與BMC共同支援。</td></tr><tr><td><code>-H / -U</code></td><td>BMC IP或Hostname，以及登入帳號。</td></tr><tr><td><code>-a</code></td><td>互動式輸入密碼；這裡每次呼叫<code>ipmi</code>都會提示輸入。</td></tr><tr><td><code>mc info</code></td><td>讀取BMC Device與Firmware識別資訊。</td></tr></tbody></table></div>
+<div class="readout"><b>如何判讀？</b><p>確認指令成功回應，並比對Firmware Revision、Manufacturer ID與Product ID是否符合受測平台。<code>mc info</code>不等於完整的Component Version Inventory，也不能用它直接取得所有BIOS、NIC或GPU版本。</p></div>
+<h3>在Host OS使用In-band</h3><div class="codebox"><pre><code># 在受測Host OS執行，並確認IPMI Driver已就緒
+sudo ipmitool -I open mc info</code></pre><button class="copy" type="button">複製</button></div><p class="small">若遠端Session建立失敗，先檢查IPMI LAN設定、帳號權限、UDP 623與Cipher支援。不要直接假設所有平台都有相同設定。</p></section>
+
+<section id="monitor"><div class="kicker">4.3 / MONITORING</div><h2>讀取Sensors、FRU與SEL</h2><p>這三類資料分別回答：「目前狀態如何？」「裝的是什麼？」「之前發生什麼？」</p>
+<h3>先理解資料從哪裡來</h3><p>以常見OpenBMC Sensor實作為例，Hardware Driver可透過hwmon／sysfs提供讀值，User-space Sensor Service再將資料提供到D-Bus，供IPMI等管理介面使用。不同Sensor來源與平台可能採用不同路徑。</p>
+<div class="tablewrap"><table><thead><tr><th>觀察層次</th><th>你要問的問題</th></tr></thead><tbody><tr><td>Hardware／Driver</td><td>裝置是否存在？Driver是否成功讀到資料？</td></tr><tr><td>Sensor Service／D-Bus</td><td>資料是否更新？Value、Unit與Availability是否合理？</td></tr><tr><td>IPMI／Client</td><td>Sensor對應與編碼是否正確？Client顯示值是否一致？</td></tr></tbody></table></div><p class="small">D-Bus是Linux上的IPC機制。這裡先理解它負責Service之間傳遞資料即可，不要求先記住OpenBMC的Service名稱。</p>
+<h3>4.3.1 Sensors與SDR <span class="badge">Read-only</span></h3><p>SDR（Sensor Data Record）提供Sensor的描述與相關設定；Sensor Reading則反映目前讀值或Discrete State。</p><div class="codebox"><pre><code>ipmi sdr elist
+ipmi sensor list
+
+# 先從清單取得實際Sensor名稱，再替換下列範例
+ipmi sensor get "CPU Temp"</code></pre><button class="copy" type="button">複製</button></div><p><b>觀察重點：</b>依平台Sensor List核對名稱、數量、單位與狀態。Host關機、元件未安裝或平台條件未滿足時，部分讀值可能為<code>na</code>；需先理解平台條件，才能判斷是否異常。</p>
+<h3>4.3.2 FRU <span class="badge">Read-only</span></h3><p>FRU（Field Replaceable Unit）資訊可包含Board或Product的識別資料。</p><div class="codebox"><pre><code>ipmi fru print</code></pre><button class="copy" type="button">複製</button></div><p><b>觀察重點：</b>對照實際硬體的Part Number、Serial Number與Manufacturer；空白欄位是否允許，依平台規格判定。</p>
+<h3>4.3.3 SEL <span class="badge">Read-only</span></h3><p>SEL（System Event Log）記錄平台事件；應比較測試前後的差異。</p><div class="codebox"><pre><code>ipmi sel info
+ipmi sel elist
+
+# 以清單中實際的Record ID查閱細節；0x0001只是範例
+ipmi sel get 0x0001</code></pre><button class="copy" type="button">複製</button></div><p><b>觀察重點：</b>確認事件內容、時間與測試動作相符；檢查是否新增未預期的錯誤事件。事件名稱與OEM解碼可能因平台而異。</p><div class="note">實作順序：先保存測試前的Sensors／SEL，再執行測試動作，最後讀回比對。保留既有SEL，才能追查事件的前後關係。</div></section>
+
+<section id="control"><div class="kicker">4.4 / CONTROL</div><h2>Power Control與Serial over LAN</h2><h3>4.4.1 Host Power Control <span class="badge impact">會影響Host運作</span></h3><p>先讀取狀態，再選擇單一測試動作。Power Off、Reset與Cycle會中斷Host工作，請在已安排的測試時段執行。</p><div class="codebox"><pre><code># 查詢Host電源狀態
+ipmi chassis power status</code></pre><button class="copy" type="button">複製</button></div><div class="tablewrap"><table><thead><tr><th>指令（每次選一項）</th><th>操作目的</th><th>驗證重點</th></tr></thead><tbody><tr><td><code>ipmi chassis power on</code></td><td>開啟Host電源</td><td>Power Status與實際開機狀態一致</td></tr><tr><td><code>ipmi chassis power off</code></td><td>強制關閉Host電源</td><td>確認Host關機，並保存相關事件</td></tr><tr><td><code>ipmi chassis power soft</code></td><td>要求Soft Shutdown</td><td>需Host OS支援並正確處理</td></tr><tr><td><code>ipmi chassis power reset</code></td><td>Host Hard Reset</td><td>確認Host重新開始Boot</td></tr><tr><td><code>ipmi chassis power cycle</code></td><td>Host關電後再開電</td><td>確認電源轉換及Boot完成</td></tr></tbody></table></div><div class="note caution"><b>Power Cycle ≠ AC Cycle。</b>Host Power Cycle通常不會移除BMC的Standby Power。AC Cycle必須透過受控PDU或實體斷電，再恢復供電；等待時間與開機預期依平台測試程序設定。</div>
+<h3>4.4.2 SOL <span class="badge">Serial over LAN</span></h3><p>SOL透過網路傳送Serial Console。BMC需支援並啟用SOL，Host端的BIOS／OS也需正確設定Console Redirection及Baud Rate。</p><div class="codebox"><pre><code># LAN Channel編號需依平台確認；此處以1為例
+ipmi sol info 1
+
+# 建立互動式Serial Console
+ipmi sol activate</code></pre><button class="copy" type="button">複製</button></div><p><b>觀察重點：</b>能看到預期Console輸出，且可正常輸入。結束時，在新的一行輸入<code>~.</code>離開；若透過SSH使用，需留意SSH自己的Escape Character處理。</p><p class="small">若已顯示SOL Session啟用，但沒有Console文字，先確認Host狀態與Serial設定，不能只憑空白畫面判斷BMC故障。</p></section>
+
+<section id="stability"><div class="kicker">4.5 / RECOVERY & UPDATES</div><h2>區分BMC Reset、Host Reset與Firmware Update</h2><h3>BMC Reboot <span class="badge impact">管理連線會暫時中斷</span></h3><div class="codebox"><pre><code># 僅在平台支援且已安排測試時執行
+ipmi mc reset cold
+
+# 等待平台定義的BMC恢復時間，再重新驗證
+ipmi mc info
+ipmi sensor list
+ipmi chassis power status
+ipmi sel elist</code></pre><button class="copy" type="button">複製</button></div><p>確認BMC恢復後可重新登入，Sensors在預期時間內恢復，Host狀態與設定符合平台要求。請先分清楚三個動作影響的範圍：BMC Reboot重啟管理控制器、Host Power Cycle改變Host電源、AC Cycle移除並恢復平台供電。它們不能互相代替。</p>
+<h3>BMC／BIOS Upgrade與Downgrade</h3><div class="note">沒有適用所有BMC平台的通用Firmware Update指令。依平台支援的Redfish UpdateService、Web UI或Vendor Tool操作；不可將特定OEM Raw Command當成通用流程。</div><ol class="steps"><li>記錄Platform／SKU、目前版本、目標Image與設定保留選項。</li><li>依平台程序執行Update，確認Image相容性與Downgrade／Anti-rollback限制。</li><li>完成必要的Reboot或Power Cycle後，確認實際啟用版本。</li><li>確認更新後仍能連線、讀取Sensors與控制Host，並檢查相關錯誤Log。</li></ol><p class="small">BIOS及其他Component Version應透過平台支援的Inventory或版本查詢方式確認；不要只依賴<code>mc info</code>。</p></section>
+
+<section id="troubleshoot"><div class="kicker">4.6 / TROUBLESHOOTING</div><h2>把既有Debug經驗帶進BMC</h2><p>面對陌生平台時，先確認「在哪一層出問題」，再決定下一個實驗。記錄操作條件、預期結果與實際結果，讓每一步都有可驗證的目的。</p>
+<div class="note"><b>練習情境：</b>Host關機後，一個CPU相關Sensor顯示na。先確認該Sensor在Host關機時是否應有資料，再比較Host開機後的結果；若仍異常，才逐層檢查Sensor Service與底層資料來源。</div><details open><summary>無法建立LANplus Session</summary><p>先確認BMC IP與路由、管理網路及UDP 623，再核對IPMI LAN是否啟用、帳號密碼、Privilege與Cipher Suite支援。Ping成功只代表部分網路可達，並不代表IPMI服務正常。</p></details><details open><summary>Sensor顯示na或數量不同</summary><p>比對Platform／SKU、元件Presence、Host電源狀態及BMC初始化時間。記錄實際Sensor名稱與預期；若相同硬體、Firmware與電源條件下仍有差異，再追查Sensor Provider、SDR與硬體讀取路徑。</p></details><details open><summary>Power指令回應成功，但Host沒有完成Boot</summary><p>指令被接受不等於Host已完成開機。讀回Power Status，搭配SOL、POST狀態及SEL，區分Power Sequence與BIOS／OS階段的問題。</p></details><details open><summary>SOL可以啟用，但畫面空白</summary><p>確認Host是否正在輸出Serial資料、BIOS／OS Console Redirection、Baud Rate及SOL權限。必要時依平台程序檢查是否有既存Session。</p></details><h3>讀完後，試著用自己的話整理</h3><ol class="steps"><li>Host關機後，BMC為什麼仍可能回應IPMI？需要哪些供電與網路條件？</li><li>In-band與Out-of-band的Request從哪裡送出？各自需要什麼條件？</li><li>Sensor數值異常時，你會收集哪些資料，如何區分Driver、Service與介面問題？</li><li>SOL有連線卻沒有文字，與Serial Console除錯有哪些相同之處？</li><li>選一個過去的Embedded Debug案例，說明你如何建立假設、設計實驗與確認原因。</li></ol><p class="small">整理重點是概念與推理過程。先掌握常用指令的用途；特定平台名稱、OEM Command與完整SDR格式可在後續工作中再深入。</p></section>
+
+
+<section id="sources"><div class="kicker">REFERENCES</div><h2>參考資料與使用範圍</h2><ul class="source"><li><a href="https://github.com/ipmitool/ipmitool/blob/master/doc/ipmitool.1.in" target="_blank" rel="noopener noreferrer">ipmitool官方Manual</a>：工具選項與指令語法。</li><li><a href="https://github.com/openbmc/docs/blob/master/IPMITOOL-cheatsheet.md" target="_blank" rel="noopener noreferrer">OpenBMC官方IPMITOOL Cheatsheet</a>：OpenBMC操作範例。</li><li><a href="https://github.com/openbmc/dbus-sensors" target="_blank" rel="noopener noreferrer">OpenBMC dbus-sensors</a>：Sensor Service、D-Bus介面及資料使用端。</li><li><a href="https://github.com/openbmc/docs/blob/master/architecture/sensor-architecture.md" target="_blank" rel="noopener noreferrer">OpenBMC Sensor Architecture</a>：Sensor資料路徑與IPMI顯示值的關係。</li><li><a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP0266_1.25.0.pdf" target="_blank" rel="noopener noreferrer">DMTF DSP0266 v1.25.0（2026-09-14）</a>：Redfish Protocol、Resource、Method與Response。</li><li><a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP2060_1.1.0.pdf" target="_blank" rel="noopener noreferrer">DMTF DSP2060 v1.1.0（2024-09-16）</a>：Redfish User Guide。</li><li><a href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm" target="_blank" rel="noopener noreferrer">Fielding Dissertation，第5章</a>：REST架構。</li><li><a href="https://www.rfc-editor.org/rfc/rfc9110.html" target="_blank" rel="noopener noreferrer">RFC 9110</a>、<a href="https://www.rfc-editor.org/rfc/rfc5789.html" target="_blank" rel="noopener noreferrer">RFC 5789</a>與<a href="https://www.rfc-editor.org/rfc/rfc6585.html" target="_blank" rel="noopener noreferrer">RFC 6585</a>：HTTP Semantics、PATCH與429。</li><li><a href="https://redfish.dmtf.org/schemas/v1/Manager.v1_17_0.json" target="_blank" rel="noopener noreferrer">Manager v1.17.0 JSON Schema</a>：Schema閱讀範例。</li><li><a href="https://github.com/DMTF/Redfish-Service-Validator" target="_blank" rel="noopener noreferrer">DMTF Redfish Service Validator</a>：工具、README與Configuration Template。</li><li>第一部分：<a href="https://docs.yoctoproject.org/5.1/">Yocto 5.1文件</a>、<a href="https://git-scm.com/docs">Git Manuals</a>、<a href="https://www.freedesktop.org/software/systemd/man/latest/">systemd Manuals</a>、<a href="https://sourceware.org/gdb/current/onlinedocs/gdb/">GDB</a>、<a href="https://docs.kernel.org/devicetree/usage-model.html">Linux Devicetree</a>及<a href="https://dbus.freedesktop.org/doc/dbus-specification.html">D-Bus Specification</a>；各節另列相關來源。</li><li>第二部分：<a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI Prompt Engineering Guide</a>、<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic：Effective Context Engineering for AI Agents</a>與<a href="https://openai.com/index/harness-engineering/">OpenAI：Harness Engineering</a>。Prompt、Context與Harness的工程案例為本教材設計，非實測效率或特定產品功能保證。</li></ul><p class="small">整理日期：2026-11-09。範例需依實際平台的IPMI支援清單與測試規格調整。本教學未連線到受測BMC，亦未對實體平台執行驗證。</p></section>
+</main></div><footer>BMC, Embedded System &amp; AI Tutorial · For Embedded System Candidates</footer>
+<script>
+document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{const text=button.previousElementSibling.innerText;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.left='-9999px';document.body.append(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw Error('copy')}button.textContent='已複製'}catch(e){button.textContent='請選取文字'}setTimeout(()=>button.textContent='複製',1700)}));
+</script>
+</body></html>
